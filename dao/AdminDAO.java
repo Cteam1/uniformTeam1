@@ -25,6 +25,7 @@ public class AdminDAO {
 		}
 	}
 
+	//useridとpasswordで整合性が取れた場合、管理者情報を取得するメソッド
 	public Admin selectByUserid(String userid, String password) {
 
 		Connection con  = null;
@@ -43,7 +44,10 @@ public class AdminDAO {
 
 			rs.first();
 
+			//結果を取得できた場合
 			if (rs != null) {
+
+				//管理者情報を格納
 				admin.setUserid(userid);
 				admin.setPassword(password);
 			}
