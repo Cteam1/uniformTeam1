@@ -5,7 +5,8 @@ public class Order {
 	//注文ユニフォームID
 	private String uniformid;
 
-
+	//注文ID
+	private String orderid;
 
 	//購入者氏名
 	private String name;
@@ -38,6 +39,7 @@ public class Order {
 	public Order() {
 		//コンストラクタ
 		this.uniformid = null;
+		this.orderid = null;
 		this.name = null;
 		this.email = null;
 		this.address = null;
@@ -126,6 +128,14 @@ public class Order {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
 	}
 
 
