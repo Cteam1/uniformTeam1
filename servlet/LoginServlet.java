@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/view/orderDetail.jsp").forward(request, response);
 			} else {
 				request.setAttribute("message", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 			}
 		}
 	}
