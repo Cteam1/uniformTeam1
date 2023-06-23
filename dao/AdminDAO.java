@@ -25,7 +25,7 @@ public class AdminDAO {
 		}
 	}
 
-	public Admin selectByAdmin(String userid, String password) {
+	public Admin selectByUserid(String userid, String password) {
 
 		Connection con  = null;
 		Statement smt = null;
