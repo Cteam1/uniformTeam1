@@ -12,7 +12,7 @@
 
 <html>
 
-<head>2100
+<head>
 
 <title>受注一覧</title>
 
