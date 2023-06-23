@@ -26,11 +26,11 @@ public class AdminDAO {
 	}
 
 	//useridとpasswordで整合性が取れた場合、管理者情報を取得するメソッド
-	public Admin selectByUserid(String userid, String password) {
+	public Admin selectByUserid(String adminid, String password) {
 
 		Connection con  = null;
 		Statement smt = null;
-		String sql = "SELECT * FROM admin_info WHERE userid ='"+userid+"' and password='"+password+"'";
+		String sql = "SELECT * FROM admin_info WHERE adminid ='"+adminid+"' and password='"+password+"'";
 		Admin admin = new Admin();
 
 		try {
@@ -48,7 +48,7 @@ public class AdminDAO {
 			if (rs != null) {
 
 				//管理者情報を格納
-				admin.setUserid(userid);
+				admin.setAdminid(adminid);
 				admin.setPassword(password);
 			}
 
