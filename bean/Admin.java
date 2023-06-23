@@ -19,8 +19,8 @@ public class Admin {
 		return adminid;
 	}
 
-	public void setAdminid(String userid) {
-		this.adminid = userid;
+	public void setAdminid(String adminid) {
+		this.adminid = adminid;
 	}
 
 	public String getPassword() {
