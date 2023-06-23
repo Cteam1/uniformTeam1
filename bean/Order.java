@@ -2,53 +2,76 @@ package bean;
 
 public class Order {
 
-	//注文ユニフォームID
+	// 注文ユニフォームID
 	private String uniformid;
 
-	//注文ID
+	// ユニフォームの種類
+	private String uniformType;
+
+	// 注文ID
 	private String orderid;
 
-	//購入者氏名
+	// 購入者氏名
 	private String name;
 
-	//購入者Email
+	// 購入者Email
 	private String email;
 
-	//購入者住所
+	// 購入者住所
 	private String address;
 
-	//購入者電話番号
+	// 購入者電話番号
 	private String telNumber;
 
-	//購入金額合計
+	// 購入金額合計
 	private int price;
 
-	//備考欄
+	// 個数
+	private int quantity;
+
+	// 備考欄
 	private String messase;
 
-	//支払状況ステータス
+	// 支払状況ステータス
 	private String payment;
 
-	//発送状況ステータス
+	// 発送状況ステータス
 	private String send;
 
-	//注文日
+	// 注文日
 	private String date;
 
-
 	public Order() {
-		//コンストラクタ
+		// コンストラクタ
 		this.uniformid = null;
+		this.uniformType = null;
 		this.orderid = null;
 		this.name = null;
 		this.email = null;
 		this.address = null;
 		this.telNumber = null;
 		this.price = 0;
+		this.quantity = 0;
 		this.messase = null;
 		this.payment = null;
 		this.send = null;
 		this.date = null;
+	}
+
+	public String getUniformType() {
+		return uniformType;
+	}
+
+	public void setUniformType(String uniformType) {
+		this.uniformType = uniformType;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public String getUniformid() {
@@ -58,6 +81,7 @@ public class Order {
 	public void setUniformid(String uniformid) {
 		this.uniformid = uniformid;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -137,7 +161,5 @@ public class Order {
 	public void setOrderid(String orderid) {
 		this.orderid = orderid;
 	}
-
-
 
 }
