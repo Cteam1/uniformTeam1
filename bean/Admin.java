@@ -15,11 +15,11 @@ public class Admin {
 	}
 
 
-	public String getUserid() {
+	public String getAdminid() {
 		return adminid;
 	}
 
-	public void setUserid(String userid) {
+	public void setAdminid(String userid) {
 		this.adminid = userid;
 	}
 
