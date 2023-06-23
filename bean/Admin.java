@@ -3,24 +3,24 @@ package bean;
 public class Admin {
 
 	//管理者ID
-	private String userid;
+	private String adminid;
 
 	//管理者ログイン用パスワード
 	private String password;
 
 	//コンストラクター
 	public Admin(){
-		this.userid = null;
+		this.adminid = null;
 		this.password = null;
 	}
 
 
 	public String getUserid() {
-		return userid;
+		return adminid;
 	}
 
 	public void setUserid(String userid) {
-		this.userid = userid;
+		this.adminid = userid;
 	}
 
 	public String getPassword() {
