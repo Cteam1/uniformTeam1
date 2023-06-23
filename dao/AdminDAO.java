@@ -58,7 +58,7 @@ public class AdminDAO {
 		}
 		//リソース開放処理
 		finally {
-			if (smt == null) {
+			if (smt != null) {
 				try {
 					smt.close();
 				}
@@ -66,7 +66,7 @@ public class AdminDAO {
 
 				}
 			}
-			if (con == null) {
+			if (con != null) {
 				try {
 					con.close();
 				}
