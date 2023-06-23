@@ -30,7 +30,7 @@ public class Order {
 	private int quantity;
 
 	// 備考欄
-	private String messase;
+	private String message;
 
 	// 支払状況ステータス
 	private String payment;
@@ -52,7 +52,7 @@ public class Order {
 		this.telNumber = null;
 		this.price = 0;
 		this.quantity = 0;
-		this.messase = null;
+		this.message = null;
 		this.payment = null;
 		this.send = null;
 		this.date = null;
@@ -122,12 +122,12 @@ public class Order {
 		this.price = price;
 	}
 
-	public String getMessase() {
-		return messase;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMessase(String messase) {
-		this.messase = messase;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getPayment() {
