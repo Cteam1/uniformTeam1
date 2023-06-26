@@ -1,68 +1,69 @@
 package bean;
 
-/**
-- -
--
--
- *
- */
 public class Order {
 
+	// 注文ユニフォームID
+	private String uniformid;
 
-	public int getOrderno() {
-		return orderno;
-	}
+	// ユニフォームの種類
+	private String uniformType;
 
-	public void setOrderno(int orderno) {
-		this.orderno = orderno;
-	}
+	// 注文ID
+	private String orderid;
 
-	public String getDatetime() {
-		return datetime;
-	}
+	// 購入者氏名
+	private String name;
 
-	public void setDate(String datetime) {
-		this.datetime = datetime;
-	}
+	// 購入者Email
+	private String email;
 
-	public String getUserid() {
-		return userid;
-	}
+	// 購入者住所
+	private String address;
 
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+	// 購入者電話番号
+	private String telNumber;
 
-	public String getIsbn() {
-		return isbn;
-	}
+	// 購入金額合計
+	private int price;
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-	//購入日
-	private String datetime;
-
-	//ユーザーid
-	private String userid;
-
-	//ISBN
-	private String isbn;
-
-	//注文番号
-	private int orderno;
-
-	//数量
+	// 個数
 	private int quantity;
 
-	//コンストラクタ
+	// 備考欄
+	private String message;
+
+	// 支払状況ステータス
+	private String payment;
+
+	// 発送状況ステータス
+	private String send;
+
+	// 注文日
+	private String date;
+
 	public Order() {
-		this.userid = null;
-		this.orderno=0;
-		this.datetime=null;
-		this.isbn=null;
-		this.quantity=0;
+		// コンストラクタ
+		this.uniformid = null;
+		this.uniformType = null;
+		this.orderid = null;
+		this.name = null;
+		this.email = null;
+		this.address = null;
+		this.telNumber = null;
+		this.price = 0;
+		this.quantity = 0;
+		this.message = null;
+		this.payment = null;
+		this.send = null;
+		this.date = null;
+	}
+
+	public String getUniformType() {
+		return uniformType;
+	}
+
+	public void setUniformType(String uniformType) {
+		this.uniformType = uniformType;
 	}
 
 	public int getQuantity() {
@@ -71,6 +72,94 @@ public class Order {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}}
+	}
 
+	public String getUniformid() {
+		return uniformid;
+	}
 
+	public void setUniformid(String uniformid) {
+		this.uniformid = uniformid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTelNumber() {
+		return telNumber;
+	}
+
+	public void setTelNumber(String telNumber) {
+		this.telNumber = telNumber;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+	public String getSend() {
+		return send;
+	}
+
+	public void setSend(String send) {
+		this.send = send;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
+}
