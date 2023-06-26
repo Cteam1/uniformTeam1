@@ -41,6 +41,11 @@ public class Order {
 	// 注文日時
 	private String orderTime;
 
+	//注文日
+	private String date;
+
+
+
 	public Order() {
 		// コンストラクタ
 		this.uniformid = null;
@@ -55,9 +60,17 @@ public class Order {
 		this.message = null;
 		this.payment = null;
 		this.send = null;
+		this.date = null;
 		this.orderTime = null;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 	public String getUniformType() {
 		return uniformType;
 	}
