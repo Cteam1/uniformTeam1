@@ -38,8 +38,8 @@ public class Order {
 	// 発送状況ステータス
 	private String send;
 
-	// 注文日
-	private String date;
+	// 注文日時
+	private String orderTime;
 
 	public Order() {
 		// コンストラクタ
@@ -55,7 +55,7 @@ public class Order {
 		this.message = null;
 		this.payment = null;
 		this.send = null;
-		this.date = null;
+		this.orderTime = null;
 	}
 
 	public String getUniformType() {
@@ -146,12 +146,12 @@ public class Order {
 		this.send = send;
 	}
 
-	public String getDate() {
-		return date;
+	public String getOrderTime() {
+		return orderTime;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(String orderTime) {
+		this.orderTime = orderTime;
 	}
 
 	public String getOrderid() {
