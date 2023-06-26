@@ -66,6 +66,7 @@ public class OrderDao {
 				order.setDate(rs.getString("order_date"));
 				order.setPayment(rs.getString("payment"));
 				order.setSend(rs.getString("send"));
+				order.setSend(rs.getString("order_time"));
 				orderList.add(order);
 			}
 			// リソース解放
