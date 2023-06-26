@@ -150,7 +150,7 @@ public class Order {
 		return orderTime;
 	}
 
-	public void setDate(String orderTime) {
+	public void setOrderTime(String orderTime) {
 		this.orderTime = orderTime;
 	}
 
