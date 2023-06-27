@@ -36,14 +36,14 @@ public class OrderDAO {
 	}// メソッド終了
 
 	// DBに登録されているデータを全件取得するメソッド
-	//戻り値　ArrayList<Order> orderList
+	// 戻り値 ArrayList<Order> orderList
 	public ArrayList<Order> selectAll() {
 
 		Connection con = null;
 		Statement smt = null;
 
 		ArrayList<Order> orderList = new ArrayList<Order>();
-		Order order = new Order();
+
 
 		try {
 			// DBと接続
@@ -52,13 +52,14 @@ public class OrderDAO {
 			smt = con.createStatement();
 			// DB上のレコードを全件取得するSQL文
 			String sql = "select order_info.order_id,order_info.name,price,quantity,order_info.order_date,order_info.payment,order_info.send,order_info.order_time from order_info "
-					+ "inner join uniform_info on order_info.uniform_id=uniform_info.uniform_id order by order_date desc";
+					+ "inner join uniform_info on order_info.uniform_id=uniform_info.uniform_id order by order_date desc, order_time desc";
 
 			// 取得したレコードをResultSetへ格納
 			ResultSet rs = smt.executeQuery(sql);
 			// 取得したレコードの各値をOrderオブジェクト
 			// へセット
 			while (rs.next()) {
+				Order order = new Order();
 				order.setOrderid(rs.getString("order_id"));
 				order.setName(rs.getString("name"));
 				order.setQuantity(Integer.parseInt(rs.getString("quantity")));
@@ -66,6 +67,7 @@ public class OrderDAO {
 				order.setDate(rs.getString("order_date"));
 				order.setPayment(rs.getString("payment"));
 				order.setSend(rs.getString("send"));
+				order.setOrderTime(rs.getString("order_time"));
 				orderList.add(order);
 			}
 			// リソース解放
@@ -89,8 +91,8 @@ public class OrderDAO {
 	}// メソッド終了
 
 	// 受注詳細を受け取るメソッド
-	//戻り値：ArrayList<Order> orderList 引数：String name String time
-	public ArrayList<Order> orderDetail(String name , String orderTime) {
+	// 戻り値：ArrayList<Order> orderList 引数：String name String time
+	public ArrayList<Order> orderDetail(String name, String orderTime) {
 
 		Connection con = null;
 		Statement smt = null;
@@ -105,7 +107,8 @@ public class OrderDAO {
 			smt = con.createStatement();
 			// DB上のレコードを全件取得するSQL文
 			String sql = "SELECT name,email,address,tel_number,uniform_info.type,quantity,uniform_info.price,order_date,order_time,payment,send,message FROM order_info "
-					+ "INNER JOIN uniform_info ON order_info.uniform_id=uniform_info.uniform_id WHERE name='" + name + "'&& order_time='" + orderTime + "'";
+					+ "INNER JOIN uniform_info ON order_info.uniform_id=uniform_info.uniform_id WHERE name='" + name
+					+ "'&& order_time='" + orderTime + "'";
 
 			// 取得したレコードをResultSetへ格納
 			ResultSet rs = smt.executeQuery(sql);
@@ -117,8 +120,8 @@ public class OrderDAO {
 				order.setAddress(rs.getString("address"));
 				order.setTelNumber(rs.getString("tel_number"));
 				order.setUniformType(rs.getString("type"));
-				order.setQuantity(Integer.parseInt(rs.getString("quantity")));
-				order.setPrice(Integer.parseInt(rs.getString("price")));
+				order.setQuantity(Integer.parseInt("quantity"));
+				order.setPrice(Integer.parseInt("price"));
 				order.setDate(rs.getString("order_date"));
 				order.setOrderTime(rs.getString("order_time"));
 				order.setPayment(rs.getString("payment"));
@@ -146,15 +149,135 @@ public class OrderDAO {
 		return orderList;
 	}// メソッド終了
 
-	//入金情報を更新するメソッド、発送準備中へ自動で変換
-	//引数：payment,orderId
-	public void paymentUpdate(String payment, String name , String orderTime) {
+	// 入金情報を更新するメソッド、発送準備中へ自動で変換
+	// 引数：payment,orderId
+	public void paymentUpdate(String payment, String name, String orderTime) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		// SQL
+		String sql = "UPDATE order_info SET payment='" + payment + ",send='発送準備中' " + "WHERE name='" + name
+				+ "' && order_time='" + orderTime + "'";
+
+		try {
+
+			con = getConnection();
+			smt = con.createStatement();
+
+			// SQL実行
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			// 例外をスロー
+			throw new IllegalStateException(e);
+		} finally {
+			// リソース解放
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+
+	}// メソッド終了
+
+	// 発送状況を変更するメソッド
+	// 引数：send,orderId
+	public void sendUpdate(String send, String name, String orderTime) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		// SQL
+		String sql = "UPDATE order_info SET send='" + send +
+				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
+
+		try {
+
+			con = getConnection();
+			smt = con.createStatement();
+
+			// SQL実行
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			// 例外をスロー
+			throw new IllegalStateException(e);
+		} finally {
+			// リソース解放
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+
+	}// メソッド終了
+
+	// 発送状況と入金情報を変更するメソッド
+	// 引数 send(発送状況)、payment(入金情報)、name(名前)、orderTime(注文時刻)
+	public void StatusReset(String send, String payment, String name, String orderTime) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		// SQL
+		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "WHERE name='" + name
+				+ "' && order_time='" + orderTime + "'";
+
+		try {
+
+			con = getConnection();
+			smt = con.createStatement();
+
+			// SQL実行
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			// 例外をスロー
+			throw new IllegalStateException(e);
+		} finally {
+			// リソース解放
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+
+	}// メソッド終了
+
+	// 入金情報を変更するメソッド
+	// 引数 payment(入金情報)、name(名前)、orderTime(注文時刻)
+	public void paymentReset(String payment, String name , String orderTime) {
 
 		Connection con = null;
 		Statement smt = null;
 
 		//SQL
-		String sql = "UPDATE order_info SET payment='" + payment + ",send='発送準備中' "
+		String sql = "UPDATE order_info SET payment='" + payment + "send"
 				+ "WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
@@ -186,167 +309,43 @@ public class OrderDAO {
 
 	}// メソッド終了
 
-	//発送状況を変更するメソッド
-	//引数：send,orderId
-	public void sendUpdate(String send, String name , String orderTime) {
+	// 購入情報をDBへ登録するメソッド
+	// 引数 order
+	public void insert(Order order) {
 
 		Connection con = null;
 		Statement smt = null;
 
-		//SQL
-		String sql = "UPDATE order_info SET send='" + send +
-				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
+		String sql = "INSERT INTO order_info VALUES(NULL,'" + order.getName() + "','" + order.getEmail() + "','"
+				+ order.getAddress() + "','" + order.getTelNumber() + "','" + order.getUniformid() + "','"
+				+ order.getQuantity() + "','" + order.getMessage() + "','" + order.getPayment() + "','"
+				+ order.getSend() + "',',CURDATE(),CURTIME())";
 
 		try {
 
 			con = getConnection();
 			smt = con.createStatement();
 
-			//SQL実行
 			smt.executeUpdate(sql);
 
 		} catch (Exception e) {
-			// 例外をスロー
-			throw new IllegalStateException(e);
-		} finally {
-			// リソース解放
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
-
-	}// メソッド終了
-
-	//発送状況と入金情報を変更するメソッド
-	//引数 send(発送状況)、payment(入金情報)、name(名前)、orderTime(注文時刻)
-	public void StatusReset(String send, String payment, String name , String orderTime) {
-
-		Connection con = null;
-		Statement smt = null;
-
-		//SQL
-		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment +
-				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
-
-		try {
-
-			con = getConnection();
-			smt = con.createStatement();
-
-			//SQL実行
-			smt.executeUpdate(sql);
-
-		} catch (Exception e) {
-			// 例外をスロー
-			throw new IllegalStateException(e);
-		} finally {
-			// リソース解放
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
-
-	}// メソッド終了
-
-	//入金情報を変更するメソッド
-	//引数　payment(入金情報)、name(名前)、orderTime(注文時刻)
-	public void paymentReset(String payment, String name , String orderTime) {
-
-		Connection con = null;
-		Statement smt = null;
-
-		//SQL
-		String sql = "UPDATE order_info SET payment='" + payment +
-				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
-
-		try {
-
-			con = getConnection();
-			smt = con.createStatement();
-
-			//SQL実行
-			smt.executeUpdate(sql);
-
-		} catch (Exception e) {
-			// 例外をスロー
-			throw new IllegalStateException(e);
-		} finally {
-			// リソース解放
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
-
-	}// メソッド終了
-
-	//購入情報をDBへ登録するメソッド
-	//引数 order
-	public void insert (Order order) {
-
-		Connection con = null;
-		Statement smt = null;
-
-		String sql = "INSERT INTO order_info VALUES(NULL,'"+ order.getName() + "','"+ order.getEmail() +"','"
-				+ order.getAddress() +"','" + order.getTelNumber() + "','" + order.getUniformid() + "','" + order.getQuantity() + "','" + order.getMessage()
-				+ "','" + order.getPayment() + "','" + order.getSend() + "',',CURDATE(),CURTIME())";
-
-		try {
-
-			con = getConnection();
-			smt = con.createStatement();
-
-			smt.executeUpdate(sql);
-
-
-		}catch (Exception e) {
 			throw new IllegalStateException();
-		}finally {
-			if ( smt != null ) {
+		} finally {
+			if (smt != null) {
 				try {
 					smt.close();
-				}catch (SQLException ignore) {}
+				} catch (SQLException ignore) {
+				}
 			}
 
-			if( con != null ) {
+			if (con != null) {
 				try {
 					con.close();
-				}catch (SQLException ignore) {}
+				} catch (SQLException ignore) {
+				}
 			}
 		}
 
-	}//メソッド終了
-
-
-
-
-
-
+	}// メソッド終了
 
 }
