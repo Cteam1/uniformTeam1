@@ -47,7 +47,7 @@
 				<td><%= order_list.get(i).getPayment() %></td>
 				<td><%= order_list.get(i).getSend() %></td>
 				<td>
-					<a href="<%= request.getContextPath() %>/orderDetail?name=<%= order_list.get(i).getName() %>">詳細</a></td>
+					<a href="<%= request.getContextPath() %>/orderDetail?name=<%= order_list.get(i).getName() %>&orderTime=<%= order_list.get(i).getOrderTime() %>&payment=<%= order_list.get(i).getPayment() %>&send=<%= order_list.get(i).getSend() %>">詳細</a></td>
 				</tr>
 			<%
 					}
