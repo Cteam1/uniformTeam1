@@ -25,11 +25,11 @@ public class MultiBuyDAO {
 		}
 	}
 
-	public ArrayList<MultiBuy> selectByOrderid(String orderid) {
+	public ArrayList<MultiBuy> selectByOrderid(int orderid) {
 
 		Connection con  = null;
 		Statement smt = null;
-		String sql = "SELECT * FROM multibuy_info WHERE orderid = '" + orderid  + "'";
+		String sql = "SELECT * FROM multibuy_info WHERE order_id = '" + orderid  + "'";
 		ArrayList<MultiBuy> multibuyList = new ArrayList<MultiBuy>();
 
 		try {
@@ -41,7 +41,7 @@ public class MultiBuyDAO {
 			ResultSet rs = smt.executeQuery(sql);
 
 			//sql文から取得した結果を変数に格納
-			String uniformid = rs.getString("uniformid");
+			String uniformid = rs.getString("uniform_id");
 			int quantity = rs.getInt("quantity");
 
 			//取得した結果の数だけ繰り返す
