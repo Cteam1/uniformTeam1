@@ -3,7 +3,7 @@
 <%@page contentType= "text/html; charset=UTF-8" %>
 
 <%
-ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempList")
+ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempList");
 %>
 
 <html>
@@ -22,15 +22,15 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 		<table>
 			<tr>
 				<td>ユニフォームA</td>
-				<td><% tempList.get(0).getQuantity() %></td>
+				<td><%= tempList.get(0).getQuantity() %></td>
 			</tr>
 			<tr>
 				<td>ユニフォームB</td>
-				<td><% tempList.get(1).getQuantity() %></td>
+				<td><%= tempList.get(1).getQuantity() %></td>
 			</tr>
 			<tr>
 				<td>ユニフォームC</td>
-				<td><% tempList.get(2).getQuantity() %></td>
+				<td><%= tempList.get(2).getQuantity() %></td>
 			</tr>
 		</table>
 
