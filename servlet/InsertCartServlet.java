@@ -68,7 +68,7 @@ public class InsertCartServlet extends HttpServlet {
 				cmd = "uniformlist";
 				return;
 			}
-			multiBuy.setOrderid(uniform_idB);
+			multiBuy.setUniformid(uniform_idB);
 			multiBuy.setQuantity(quantityB);
 			tempList.add(multiBuy);
 			addCart(multiBuy, multiBuyList);
@@ -78,7 +78,7 @@ public class InsertCartServlet extends HttpServlet {
 				cmd = "uniformlist";
 				return;
 			}
-			multiBuy.setOrderid(uniform_idC);
+			multiBuy.setUniformid(uniform_idC);
 			multiBuy.setQuantity(quantityC);
 			tempList.add(multiBuy);
 			addCart(multiBuy, multiBuyList);
