@@ -6,7 +6,7 @@ public class MultiBuy {
 	private int quantity;
 
 	//注文ID
-	private String orderid;
+	private int orderid;
 
 	//ユニフォームID
 	private String uniformid;
@@ -14,16 +14,16 @@ public class MultiBuy {
 	public MultiBuy() {
 		//コンストラクタ
 		this.quantity= 0;
-		this.orderid = null;
+		this.orderid = 0;
 		this.uniformid = null;
 	}
 
 
-	public String getOrderid() {
+	public int getOrderid() {
 		return orderid;
 	}
 
-	public void setOrderid(String orderid) {
+	public void setOrderid(int orderid) {
 		this.orderid = orderid;
 	}
 
