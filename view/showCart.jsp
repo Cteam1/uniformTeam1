@@ -6,7 +6,7 @@
 
 	MyFormat obj = new MyFormat();
 
-	ArrayList<MultiBuy> cart_list = (ArrayList<MultiBuy>) request.getAttribute("cart_list");
+	ArrayList<MultiBuy> cart_list = (ArrayList<MultiBuy>) request.getAttribute("multiBuyList");
 	ArrayList<Uniform> uniform_list = (ArrayList<Uniform>) request.getAttribute("uniform_list");
 	int sum = 0;
 
@@ -46,7 +46,7 @@
 				<th style="background-color: #6666FF; width: 100">商品名</th>
 				<th style="background-color: #6666FF; width: 100">個数</th>
 				<th style="background-color: #6666FF; width: 100">金額</th>
-				<th style="background-color: #6666FF; width: 100"></th>
+				<th style="background-color: #6666FF; width: 100">削除</th>
 			</tr>
 			<%
 				if (cart_list != null) {
