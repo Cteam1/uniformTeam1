@@ -40,17 +40,17 @@ public class InsertCartServlet extends HttpServlet {
 			UniformDAO uniformDao = new UniformDAO();
 
 			// ユニフォームの種類とその注文数を取得
-			String uniform_idA = request.getParameter("uniformA_id"); // ユニフォームAのuniform_id
+			String uniform_idA = request.getParameter("uniform0"); // ユニフォームAのuniform_id
 			Uniform uniformA = uniformDao.selectByUniformid(uniform_idA);
-			int quantityA = Integer.parseInt(request.getParameter("quantityA")); // ユニフォームAの数量
+			int quantityA = Integer.parseInt(request.getParameter("quantity0")); // ユニフォームAの数量
 
-			String uniform_idB = request.getParameter("uniformB_id");
+			String uniform_idB = request.getParameter("uniform1");
 			Uniform uniformB = uniformDao.selectByUniformid(uniform_idB);
-			int quantityB = Integer.parseInt(request.getParameter("quantityB"));
+			int quantityB = Integer.parseInt(request.getParameter("quantity1"));
 
-			String uniform_idC = request.getParameter("uniformC_id");
+			String uniform_idC = request.getParameter("uniform2");
 			Uniform uniformC = uniformDao.selectByUniformid(uniform_idC);
-			int quantityC = Integer.parseInt(request.getParameter("quantityC"));
+			int quantityC = Integer.parseInt(request.getParameter("quantity2"));
 
 			// 在庫数超過の確認
 			if (uniformA.getStock() < quantityA) {
