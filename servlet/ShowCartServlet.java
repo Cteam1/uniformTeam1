@@ -25,12 +25,11 @@ public class ShowCartServlet extends HttpServlet {
 		String delno = request.getParameter("delno");
 
 		try {
-
-			// セッション取得
-
+			// sessionオブジェクトの作成
 			HttpSession session = request.getSession();
-			Admin admin = (Admin) session.getAttribute("admin");
-			ArrayList<MultiBuy> cart_list = (ArrayList<MultiBuy>) session.getAttribute("cart_list");
+
+			// セッションからカート情報（multiBuy）を取得
+			ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
 
 			// DAOオブジェクト宣言
 			UniformDAO uniformDao = new UniformDAO();
@@ -38,7 +37,7 @@ public class ShowCartServlet extends HttpServlet {
 			// ユニフォーム情報を取得
 			ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 
-			if (admin == null) {// セッション切れの場合
+			if (multiBuyList == null) {// セッション切れの場合
 
 				error = "セッションが切れました。";
 				cmd = "guestMenu";
@@ -49,13 +48,13 @@ public class ShowCartServlet extends HttpServlet {
 			if (delno != null) {// delnoがnullでない場合
 
 				// カートから該当の書籍情報を削除
-				cart_list.remove(Integer.parseInt(delno));
+				multiBuyList.remove(Integer.parseInt(delno));
 
 			}
 
 			// カート情報とユニフォーム情報をリクエストスコープに登録
 			request.setAttribute("uniform_list", uniform_list);
-			request.setAttribute("cart_list", cart_list);
+			request.setAttribute("multiBuyList", multiBuyList);
 
 		} catch (IllegalStateException e) {// DBエラーが起きた場合
 
