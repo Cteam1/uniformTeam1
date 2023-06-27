@@ -1,11 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.*"%>
+<%@page import="java.util.ArrayList,bean.*,util.*"%>
 
 <%
-	/*
-		金額の形式を変更するオブジェクト
-		MyFormat obj = new MyFormat();
-	*/
+
+
+	MyFormat obj = new MyFormat();
+
 	ArrayList<MultiBuy> cart_list = (ArrayList<MultiBuy>) request.getAttribute("cart_list");
 	ArrayList<Uniform> uniform_list = (ArrayList<Uniform>) request.getAttribute("uniform_list");
 	int sum = 0;
@@ -64,7 +64,7 @@
 
 					</td>
 				<td><%= cart_list.get(i).getQuantity() %></td>
-				<td><%= cart_list.get(i).getQuantity() * uniform_list.get(j).getPrice() %></td>
+				<td><%= obj.moneyFormat(cart_list.get(i).getQuantity() * uniform_list.get(j).getPrice()) %></td>
 				<td>
 					<a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a></td>
 				</tr>
@@ -82,7 +82,7 @@
 		<table style="margin: 0 auto">
 		<tr>
 			<th style="background-color: #6666FF; width: 100">合計金額</th>
-			<td style="text-align: center; width: 100"><%= sum %></td>
+			<td style="text-align: center; width: 100"><%= obj.moneyFormat(sum) %></td>
 		</tr>
 	</table>
 

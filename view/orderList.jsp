@@ -1,11 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Order"%>
+<%@page import="java.util.ArrayList,bean.Order,util.*"%>
 
 <%
-	/*
-		金額の形式を変更するオブジェクト
-		MyFormat obj = new MyFormat();
-	*/
+	MyFormat obj = new MyFormat();
+
 	ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
 
 %>
@@ -42,12 +40,12 @@
 			<tr style="text-align: center">
 				<td><%= order_list.size() - i %></td>
 				<td><%= order_list.get(i).getName() %></td>
-				<td><%= order_list.get(i).getPrice() * order_list.get(i).getPrice() %></td>
+				<td><%= obj.moneyFormat(order_list.get(i).getPrice() * order_list.get(i).getPrice()) %></td>
 				<td><%= order_list.get(i).getDate() %></td>
 				<td><%= order_list.get(i).getPayment() %></td>
 				<td><%= order_list.get(i).getSend() %></td>
 				<td>
-					<a href="<%= request.getContextPath() %>/orderDetail?name=<%= order_list.get(i).getName() %>&orderTime=<%= order_list.get(i).getOrderTime() %>&payment=<%= order_list.get(i).getPayment() %>&send=<%= order_list.get(i).getSend() %>">詳細</a></td>
+					<a href="<%= request.getContextPath() %>/orderDetail?name=<%= order_list.get(i).getName() %>&order_time=<%= order_list.get(i).getOrderTime() %>">詳細</a></td>
 				</tr>
 			<%
 					}
