@@ -20,15 +20,14 @@
 	</div>
 
 
-	<div style="margin: 0 auto; width: 900">
-		<form action="<%=request.getContextPath() %>/insertCart">
+	<div style="margin: 0 auto; width: 1000">
+		<form action="<%=request.getContextPath()%>/insertCart">
 			<table>
 				<tr>
 					<th style="background-color: #6666ff; width: 300">種類</th>
 					<th style="background-color: #6666ff; width: 300">価格</th>
 					<th style="background-color: #6666ff; width: 300">在庫数</th>
-					<th style="background-color: #6666ff; width: 300">個数</th>
-					<th style="background-color: #6666ff; width: 300"></th>
+					<th style="background-color: #6666ff; width: 100">個数</th>
 				</tr>
 				<%
 					if (uniform_list != null) {
@@ -39,21 +38,24 @@
 					<td style="text-align: center">><%=uniform_list.get(i).getUniformType()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getPrice()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getStock()%></td>
-					<td><input type="text" name="stock"></td>
-					<td><a
-						href="<%=request.getContextPath()%>/insertCart?uniformid<%=uniform_list.get(i).getUniformid()%>">カートに入れる</a></td>
+					<td><input type="text" name="quantity<%=i%>"><input
+						type="hidden" name="uniform<%=i%>"
+						value="<%=uniform_list.get(i).getUniformid()%>"></td>
 				</tr>
 
 				<%
 					}
-				}
+					}
 				%>
 
 			</table>
+
+			<input type="submit" value="カートに追加"
+				style="margin: 50 500; width: 100">
 		</form>
 	</div>
 
-	<%@include file="/common/footer.jsp" %>
+	<%@include file="/common/footer.jsp"%>
 
 </body>
 </html>
