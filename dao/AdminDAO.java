@@ -29,7 +29,7 @@ public class AdminDAO {
 
 		Connection con  = null;
 		Statement smt = null;
-		String sql = "SELECT * FROM admin_info WHERE adminid ='"+adminid+"' and password='"+password+"'";
+		String sql = "SELECT * FROM admin_info WHERE user_id ='"+adminid+"' and password='"+password+"'";
 		Admin admin = new Admin();
 
 		try {
