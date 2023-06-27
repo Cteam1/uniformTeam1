@@ -9,7 +9,7 @@ public class Order {
 	private String uniformType;
 
 	// 注文ID
-	private String orderid;
+	private int orderid;
 
 	// 購入者氏名
 	private String name;
@@ -50,7 +50,7 @@ public class Order {
 		// コンストラクタ
 		this.uniformid = null;
 		this.uniformType = null;
-		this.orderid = null;
+		this.orderid = 0;
 		this.name = null;
 		this.email = null;
 		this.address = null;
@@ -167,11 +167,11 @@ public class Order {
 		this.orderTime = orderTime;
 	}
 
-	public String getOrderid() {
+	public int getOrderid() {
 		return orderid;
 	}
 
-	public void setOrderid(String orderid) {
+	public void setOrderid(int orderid) {
 		this.orderid = orderid;
 	}
 
