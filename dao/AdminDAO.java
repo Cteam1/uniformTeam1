@@ -41,12 +41,12 @@ public class AdminDAO {
 			//sql文を実行し、結果を取得
 			ResultSet rs = smt.executeQuery(sql);
 
-			rs.first();
-
 			//結果を取得できた場合
-			//管理者情報を格納
-			admin.setAdminid(rs.getString("user_id"));
-			admin.setPassword(rs.getString("password"));
+			if (rs.next()) {
+				//管理者情報を格納
+				admin.setAdminid(rs.getString("user_id"));
+				admin.setPassword(rs.getString("password"));
+			}
 			
 		}
 		catch (Exception e) {
