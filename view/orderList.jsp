@@ -5,7 +5,7 @@
 	MyFormat obj = new MyFormat();
 
 	ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
-	ArrayList<Order> order_list_group = (ArrayList<Order>) request.getAttribute("order_list");
+	ArrayList<Order> order_list_group = (ArrayList<Order>) request.getAttribute("order_list_group");
 
 %>
 
