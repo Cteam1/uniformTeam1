@@ -24,15 +24,15 @@
 	</servlet-mapping>
 
 
-<!-- OrderFromServlet -->
+<!-- OrderFormServlet -->
 	 <servlet>
-		<servlet-name>orderFromMapping</servlet-name>
+		<servlet-name>orderFormMapping</servlet-name>
 		<servlet-class>servlet.OrderFromServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>orderFromMapping</servlet-name>
-		<url-pattern>/orderFrom</url-pattern>
+		<servlet-name>orderFormMapping</servlet-name>
+		<url-pattern>/orderForm</url-pattern>
 	</servlet-mapping>
 
 
