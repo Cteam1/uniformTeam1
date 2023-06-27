@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import bean.*;
+import dao.*;
 
 public class OrderListServlet extends HttpServlet {
 
@@ -13,6 +14,9 @@ public class OrderListServlet extends HttpServlet {
 
 		// エラーメッセージ格納用変数
 		String error = "";
+
+		// エラーコマンド格納用変数
+		String cmd = "";
 
 		try {
 
@@ -29,6 +33,7 @@ public class OrderListServlet extends HttpServlet {
 			if (admin == null) {// セッション切れの場合
 
 				error = "セッションが切れました。";
+				cmd = "logout";
 				return;
 
 			}
@@ -42,6 +47,7 @@ public class OrderListServlet extends HttpServlet {
 		} catch (IllegalStateException e) {// DBエラーが起きた場合
 
 			error = "エラーが起こった為、受注一覧は表示できませんでした。";
+			cmd = "logout";
 
 		} finally {
 
@@ -54,6 +60,7 @@ public class OrderListServlet extends HttpServlet {
 
 				// エラーメッセージをリクエストスコープに登録
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 
 				// error.jspに遷移
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);

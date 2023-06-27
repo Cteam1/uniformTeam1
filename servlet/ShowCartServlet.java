@@ -18,6 +18,9 @@ public class ShowCartServlet extends HttpServlet {
 		// エラーメッセージ格納用変数
 		String error = "";
 
+		// エラーコマンド格納用変数
+		String cmd = "";
+
 		// パラメータの取得
 		String delno = request.getParameter("delno");
 
@@ -38,6 +41,7 @@ public class ShowCartServlet extends HttpServlet {
 			if (admin == null) {// セッション切れの場合
 
 				error = "セッションが切れました。";
+				cmd = "guestMenu";
 				return;
 
 			}
@@ -56,6 +60,7 @@ public class ShowCartServlet extends HttpServlet {
 		} catch (IllegalStateException e) {// DBエラーが起きた場合
 
 			error = "エラーが起こった為、カート一覧は表示できませんでした。";
+			cmd = "guestMenu";
 
 		} finally {
 
@@ -68,6 +73,7 @@ public class ShowCartServlet extends HttpServlet {
 
 				// エラーメッセージをリクエストスコープに登録
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 
 				// error.jspに遷移
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
