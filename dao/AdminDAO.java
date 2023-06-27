@@ -44,13 +44,10 @@ public class AdminDAO {
 			rs.first();
 
 			//結果を取得できた場合
-			if (rs != null) {
-
-				//管理者情報を格納
-				admin.setAdminid(adminid);
-				admin.setPassword(password);
-			}
-
+			//管理者情報を格納
+			admin.setAdminid(rs.getString("user_id"));
+			admin.setPassword(rs.getString("password"));
+			
 		}
 		catch (Exception e) {
 			throw new IllegalStateException(e);
