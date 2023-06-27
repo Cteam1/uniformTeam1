@@ -15,7 +15,8 @@
 	<%@include file="/common/header.jsp"%>
 
 	<div>
-		<h3 style="text-align: center">商品一覧</h3>
+		<p><a href="<%=request.getContextPath() %>/view/menu.jsp">[メニュー]</a></p>
+		<h2 style="text-align: center">商品一覧</h2>
 		<hr style="height: 2; background-color: #000000">
 	</div>
 
