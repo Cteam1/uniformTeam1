@@ -32,7 +32,9 @@ public class OrderFormServlet extends HttpServlet {
 			//セッションスコープから、注文個数の情報を取得
 			ArrayList<MultiBuy> multiBuys = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
 
-			OrderDAO orderDAO = new  OrderDAO();
+			UniformDAO uniformDAO = new UniformDAO();
+			OrderDAO orderDAO = new OrderDAO();
+
 
 			//リクエストスコープから購入者情報を取得
 			String name = request.getParameter("name");
@@ -41,8 +43,20 @@ public class OrderFormServlet extends HttpServlet {
 			String telNumber = request.getParameter("telNumber");
 			String message = request.getParameter("message");
 
-			//ユニフォームの注文情報をorder
+			//注文情報を元に行う各種処理の実行
 			for (int i = 0; i < uniform_list.size();i++) {
+
+				//購入に伴う在庫の増減処理
+				//i番目のユニフォーム情報を取得
+				Uniform uniform = uniformDAO.selectByUniformid(uniform_list.get(i).getUniformid());
+				int afterStock = ((uniform.getStock()) - (multiBuys.get(i).getQuantity()));
+
+				//購入後の在庫数をセット
+				uniform.setStock(afterStock);
+				uniform_list.add(uniform);
+
+
+				//以下は注文情報を処理
 				Order order = new Order();
 				order.setUniformid(uniform_list.get(i).getUniformid());
 				order.setUniformType(uniform_list.get(i).getUniformType());
@@ -57,15 +71,17 @@ public class OrderFormServlet extends HttpServlet {
 				order.setPayment("入金待ち");
 				order.setSend("未発送");
 
+				//取得した注文情報を一覧表示画面に追加
 				orderDAO.insert(order);
 				order_list.add(order);
 			}
 
-
-			request.setAttribute("order_list",order_list);
+			//在庫更新後のユニフォーム情報をセット
+			request.setAttribute("uniform_list",uniform_list);
 
 			//カート情報を初期化
 			session.setAttribute("multiBuyList", null);
+
 
 		}catch (Exception e) {
 
