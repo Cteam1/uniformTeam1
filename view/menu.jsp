@@ -1,4 +1,12 @@
+<%@page import="bean.MultiBuy"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+
+<%
+ArrayList<MultiBuy> multiBuys = new ArrayList<MultiBuy>();
+
+session.setAttribute("multiBuyList", multiBuys);
+%>
 <html>
 <head>
 <title>ユニフォーム受注管理システム</title>
