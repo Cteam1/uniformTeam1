@@ -36,7 +36,7 @@
 				%>
 
 				<tr>
-					<td style="text-align: center">><%=uniform_list.get(i).getUniformType()%></td>
+					<td style="text-align: center"><%=uniform_list.get(i).getUniformType()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getPrice()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getStock()%></td>
 					<td><input type="text" name="quantity<%=i%>"><input
