@@ -17,7 +17,7 @@
 
 		<br>
 		<br>
-		<p><a href="<%= request.getContextPath() %>/view/uniformList.jsp">購入ページ</a></p>
+		<p><a href="<%= request.getContextPath() %>/uniformList">購入ページ</a></p>
 		<p><a href="<%= request.getContextPath() %>/showCart">カート確認ページ</a></p>
 		<p><a href="<%= request.getContextPath() %>/logout">メインメニュー</a></p>
 
