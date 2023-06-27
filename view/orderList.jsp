@@ -40,7 +40,7 @@
 			<tr style="text-align: center">
 				<td><%= order_list.size() - i %></td>
 				<td><%= order_list.get(i).getName() %></td>
-				<td><%= obj.moneyFormat(order_list.get(i).getPrice() * order_list.get(i).getPrice()) %></td>
+				<td><%= obj.moneyFormat(order_list.get(i).getPrice() * order_list.get(i).getQuantity()) %></td>
 				<td><%= order_list.get(i).getDate() %></td>
 				<td><%= order_list.get(i).getPayment() %></td>
 				<td><%= order_list.get(i).getSend() %></td>
