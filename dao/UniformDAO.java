@@ -48,8 +48,8 @@ public class UniformDAO {
 	 */
 	public ArrayList<Uniform> selectAll() {
 
-		ArrayList<Uniform> uni_list = new ArrayList<>();
-		String sql = "SELECT * FROM uniform_info ORDER BY uniformid";
+		ArrayList<Uniform> uni_list = new ArrayList<Uniform>();
+		String sql = "SELECT * FROM uniform_info ORDER BY uniform_id";
 
 		Connection con = null;
 		Statement smt = null;
@@ -61,8 +61,8 @@ public class UniformDAO {
 
 			while (rs.next()) {
 				Uniform uni = new Uniform();
-				uni.setUniformid(rs.getString("uniformid"));
-				uni.setUniformType(rs.getString("uniformType"));
+				uni.setUniformid(rs.getString("uniform_id"));
+				uni.setUniformType(rs.getString("type"));
 				uni.setStock(rs.getInt("stock"));
 				uni.setPrice(rs.getInt("price"));
 
@@ -89,7 +89,7 @@ public class UniformDAO {
 
 	}
 
-	public static Uniform selectByUniformid(String uniformid) {
+	public static Uniform selectByUniformid(String uniform_id) {
 		Connection con = null;
 		Statement smt = null;
 
@@ -97,10 +97,10 @@ public class UniformDAO {
 
 		try {
 			//★引数の情報を利用し、検索用のSQL文を文字列として定義します
-			String sql = "SELECT uniformid,uniformType,stock,price FROM uniform_info WHERE uniformid = '" + uniformid + "'";
+			String sql = "SELECT uniform_id,type,stock,price FROM uniform_info WHERE uniform_id = '" + uniform_id + "'";
 
 			//BookDAOクラスに定義した、getConnection()メソッドを利用してConnectionオブジェクトを生成します
-			con = UniformDAO.getConnection();
+			con = getConnection();
 
 			//ConnectionオブジェクトのcreateStatement（）メソッドを利用してStatementオブジェクトを生成します。
 			smt = con.createStatement();
@@ -110,8 +110,8 @@ public class UniformDAO {
 
 			//結果セットから書籍データを取り出し、Bookオブジェクトに格納します
 			while (rs.next()) {
-				uni.setUniformid(rs.getString("uniformid"));
-				uni.setUniformType(rs.getString("uniformType"));
+				uni.setUniformid(rs.getString("uniform_id"));
+				uni.setUniformType(rs.getString("type"));
 				uni.setStock(rs.getInt("stock"));
 				uni.setPrice(rs.getInt("price"));
 			}
