@@ -33,7 +33,7 @@ public class InsertCartServlet extends HttpServlet {
 				return;
 			}
 
-			ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
+			ArrayList<MultiBuy> tempList = new ArrayList<MultiBuy>();
 
 			Uniform uniform = new Uniform();
 			MultiBuy multiBuy = new MultiBuy();
@@ -58,6 +58,7 @@ public class InsertCartServlet extends HttpServlet {
 				cmd = "uniformlist";
 				return;
 			}
+			multiBuy = new MultiBuy();
 			multiBuy.setUniformid(uniform_idA);
 			multiBuy.setQuantity(quantityA);
 			tempList.add(multiBuy);
@@ -68,6 +69,7 @@ public class InsertCartServlet extends HttpServlet {
 				cmd = "uniformlist";
 				return;
 			}
+			multiBuy = new MultiBuy();
 			multiBuy.setUniformid(uniform_idB);
 			multiBuy.setQuantity(quantityB);
 			tempList.add(multiBuy);
@@ -78,6 +80,7 @@ public class InsertCartServlet extends HttpServlet {
 				cmd = "uniformlist";
 				return;
 			}
+			multiBuy = new MultiBuy();
 			multiBuy.setUniformid(uniform_idC);
 			multiBuy.setQuantity(quantityC);
 			tempList.add(multiBuy);
@@ -89,7 +92,7 @@ public class InsertCartServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーのため選択された商品をカートに入れることができませんでした。";
-			cmd = "login";
+			cmd = "menu";
 			return;
 
 		} finally {
