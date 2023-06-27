@@ -13,7 +13,7 @@
 
 
 <!-- LogoutServlet -->
-	 <servlet>
+	<servlet>
 		<servlet-name>logoutMapping</servlet-name>
 		<servlet-class>servlet.LogoutServlet</servlet-class>
 	</servlet>
@@ -27,7 +27,7 @@
 <!-- OrderFormServlet -->
 	 <servlet>
 		<servlet-name>orderFormMapping</servlet-name>
-		<servlet-class>servlet.OrderFromServlet</servlet-class>
+		<servlet-class>servlet.OrderFormServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -37,7 +37,7 @@
 
 
 <!-- OrderListServlet -->
-			 <servlet>
+	<servlet>
 		<servlet-name>orderListMapping</servlet-name>
 		<servlet-class>servlet.OrderListServlet</servlet-class>
 	</servlet>
@@ -49,7 +49,7 @@
 
 
 <!-- OrderDetailServlet -->
-			 <servlet>
+	<servlet>
 		<servlet-name>orderDetailMapping</servlet-name>
 		<servlet-class>servlet.OrderDetailServlet</servlet-class>
 	</servlet>
@@ -57,10 +57,11 @@
 	<servlet-mapping>
 		<servlet-name>orderDetailMapping</servlet-name>
 		<url-pattern>/orderDetail</url-pattern>
-	</servlet-mapping>		 <servlet>
+	</servlet-mapping>
 
 
 <!-- PaymentServlet -->
+	<servlet>
 		<servlet-name>paymentMapping</servlet-name>
 		<servlet-class>servlet.PaymentServlet</servlet-class>
 	</servlet>
@@ -71,7 +72,7 @@
 	</servlet-mapping>
 
 <!-- GuestLoginServlet -->
-		 <servlet>
+	<servlet>
 		<servlet-name>guestLoginMapping</servlet-name>
 		<servlet-class>servlet.GuestLoginServlet</servlet-class>
 	</servlet>
@@ -83,7 +84,7 @@
 
 
 <!-- InsertCartServlet -->
-		 <servlet>
+	<servlet>
 		<servlet-name>insertCartMapping</servlet-name>
 		<servlet-class>servlet.InsertCartServlet</servlet-class>
 	</servlet>
@@ -95,7 +96,7 @@
 
 
 <!-- UniformListServlet -->
-		 <servlet>
+	<servlet>
 		<servlet-name>uniformListMapping</servlet-name>
 		<servlet-class>servlet.UniformListServlet</servlet-class>
 	</servlet>
@@ -107,7 +108,7 @@
 
 
 <!--ShowCart Servlet -->
-		 <servlet>
+	<servlet>
 		<servlet-name>showCartMapping</servlet-name>
 		<servlet-class>servlet.ShowCartServlet</servlet-class>
 	</servlet>
