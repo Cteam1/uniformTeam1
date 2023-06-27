@@ -15,8 +15,10 @@ import bean.Uniform;
 import dao.OrderDAO;
 import dao.UniformDAO;
 
+import util.SendMail;
+
 public class OrderFormServlet extends HttpServlet {
-	public void  doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+	public void  doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 
 		String error = "";
 
@@ -24,7 +26,7 @@ public class OrderFormServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			//セッションからカート情報を取得(入力値は仮
-			ArrayList<Order> order_list = new ArrayList<Order>();
+			ArrayList<Order> order_list =(ArrayList<Order>) session.getAttribute("order_list");
 
 			//リクエストスコープからユニフォームの注文情報を取得
 			ArrayList<Uniform> uniform_list = (ArrayList<Uniform>)request.getAttribute("uniform_list");
@@ -42,6 +44,9 @@ public class OrderFormServlet extends HttpServlet {
 			String address = request.getParameter("address");
 			String telNumber = request.getParameter("telNumber");
 			String message = request.getParameter("message");
+
+			//合計金額用
+			int total = 0;
 
 			//注文情報を元に行う各種処理の実行
 			for (int i = 0; i < uniform_list.size();i++) {
@@ -61,6 +66,7 @@ public class OrderFormServlet extends HttpServlet {
 				order.setUniformid(uniform_list.get(i).getUniformid());
 				order.setUniformType(uniform_list.get(i).getUniformType());
 				order.setPrice((uniform_list.get(i).getPrice()));
+				int quantity = order_list.get(i).getQuantity();
 
 				//フォームから受け取った情報
 				order.setName(name);
@@ -71,10 +77,14 @@ public class OrderFormServlet extends HttpServlet {
 				order.setPayment("入金待ち");
 				order.setSend("未発送");
 
+				total += order.getPrice() * quantity;
+
 				//取得した注文情報を一覧表示画面に追加
 				orderDAO.insert(order);
 				order_list.add(order);
 			}
+
+			SendMail sendMail = new SendMail(order_list, total);
 
 			//在庫更新後のユニフォーム情報をセット
 			request.setAttribute("uniform_list",uniform_list);
@@ -88,7 +98,7 @@ public class OrderFormServlet extends HttpServlet {
 
 		}finally {
 			if(error.equals("")) {
-				request.getRequestDispatcher("/view/thankYou.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/thankyou.jsp").forward(request, response);
 
 			}else {
 				request.setAttribute("error", error);
