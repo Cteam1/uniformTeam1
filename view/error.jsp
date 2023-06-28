@@ -27,7 +27,7 @@
 			if (cmd.equals("logout")) {
 		%>
 		<p>
-			<a href="<%=request.getContextPath()%>/logout">ログイン画面に戻る</a>
+			<a href="<%=request.getContextPath()%>/logout">管理者ログイン画面に戻る</a>
 		</p>
 		<%
 			} else if (cmd.equals("uniformList")) {
@@ -48,9 +48,20 @@
 			<a href="<%=request.getContextPath()%>/view/showCart.jsp">カート確認画面に戻る</a>
 		</p>
 		<%
+			} else if (cmd.equals("uniformlist")) {
+		%>
+		<p>
+			<a href="<%=request.getContextPath()%>/uniformList">ユニフォーム一覧画面に戻る</a>
+		</p>
+		<%
+			} else if (cmd.equals("menu")) {
+		%>
+		<p>
+			<a href="<%=request.getContextPath()%>/view/menu.jsp">ホーム画面に戻る</a>
+		</p>
+		<%
 			}
 		%>
-
 	</div>
 
 	<%@include file="/common/footer.jsp"%>
