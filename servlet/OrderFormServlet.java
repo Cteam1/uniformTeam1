@@ -32,7 +32,7 @@ public class OrderFormServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			//セッションからカート情報を取得(入力値は仮
-			ArrayList<Order> order_list =(ArrayList<Order>) session.getAttribute("order_list");
+			ArrayList<Order> order_list = new ArrayList<Order>();
 
 			//リクエストスコープからユニフォームの注文情報を取得
 			ArrayList<Uniform> uniform_list = uniformDAO.selectAll();
@@ -63,7 +63,7 @@ public class OrderFormServlet extends HttpServlet {
 
 				//購入後の在庫数をセット
 				uniform.setStock(afterStock);
-				uniform_list.add(uniform);
+				uniform_list.set(i, uniform);
 
 
 				//以下は注文情報を処理
@@ -87,6 +87,9 @@ public class OrderFormServlet extends HttpServlet {
 
 				total += order.getPrice() * quantity;
 
+				//在庫更新
+				uniformDAO.updateStock(uniform_list.get(i).getUniformid(), afterStock);
+
 				//取得した注文情報を一覧表示画面に追加
 				orderDAO.insert(order);
 				order_list.add(order);
@@ -95,7 +98,7 @@ public class OrderFormServlet extends HttpServlet {
 			SendMail sendMail = new SendMail(order_list, total);
 
 			//在庫更新後のユニフォーム情報をセット
-			request.setAttribute("uniform_list",uniform_list);
+			//request.setAttribute("uniform_list",uniform_list);
 
 			//カート情報を初期化
 			session.setAttribute("multiBuyList", null);
