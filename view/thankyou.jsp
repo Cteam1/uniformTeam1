@@ -8,10 +8,11 @@
 <body>
 	<%@ include file="/common/header.jsp" %>
 
-	<a href="<%=request.getContextPath() %>/view/guestMenu.jsp">[購入者メニュー]</a>
-
 	<h2 style="margin: auto; width: 850px ; margin-top: 30px;">ご注文ありがとうございます。</h2>
 	<h2 style="margin: auto; width: 850px ;">ご入金をよろしくお願いいたします。</h2>
+	<form action="<%= request.getContextPath() %>/view/menu.jsp">
+	<input type="submit" value="メニューに戻る" style="margin: auto;">
+	</form>
 
 	<hr style="text-align:center ; width:850px; double #000; background-color:black; height: 5px;">
 
