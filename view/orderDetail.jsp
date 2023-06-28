@@ -4,10 +4,6 @@
 <%
 	ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
 	MyFormat format = new MyFormat();
-	int total = 0;
-	for(int i = 0; i < order_list.size(); i++){
-		total += order_list.get(i).getPrice() * order_list.get(i).getQuantity();
-	}
 %>
 <html>
 <head>
@@ -25,37 +21,37 @@
 		<!-- ナビゲーション  -->
 
 		<p style="width: 950px; text-align: center">
-			<a href="<%=request.getContextPath()%>/orderList">[受注状況一覧へ戻る]</a>
+			<a href="<%=request.getContextPath()%>/view/orderList.jsp">[受注状況一覧へ戻る]</a>
 		</p>
 
 		<hr size="4" color="blue" style="width: 950px">
 	</div>
-	<div style="margin: auto; width: 600px">
+
 		<form action="<%=request.getContextPath()%>/payment" id="payment"
 			id="send">
-			<table border="1" style="width: 600px">
+			<table border="1" style="width: 400px; margin:0 auto">
 
 				<%
 					if (order_list != null) {
 						for (int i = 0; i < 1; i++) {
 							Order order = (Order) order_list.get(i);
 				%>
-				<tr>
+				<tr style="text-align:center">
 					<th>No.</th>
 					<td><%=order.getOrderid()%></td>
 				</tr>
 
-				<tr>
+				<tr style="text-align:center">
 					<th>氏名</th>
 					<td><%=order.getName()%></td>
 				</tr>
 
-				<tr>
+				<tr  style="text-align:center">
 					<th>Mail</th>
 					<td><%=order.getEmail()%></td>
 				</tr>
 
-				<tr>
+				<tr style="text-align:center">
 					<th>住所</th>
 					<td><%=order.getAddress()%></td>
 				</tr>
@@ -64,9 +60,10 @@
 					}
 					}
 				%>
-				<tr>
+				<tr style="text-align:center">
 
-					<th rowspan="<%=order_list.size()+1%>">購入内容</th>
+						<th rowspan="<%=order_list.size()%>" >購入内容</th>
+
 
 					<%
 					for(int i=0; i < order_list.size();i++){
@@ -74,22 +71,11 @@
 
 					%>
 
-					<td><%=order.getUniformType()%>
-
-						<%=order.getQuantity()%></td>
-						</tr>
+					<td style="text-align:center"><%=order.getUniformType()%>×<%=order.getQuantity()%></td>
+</tr>
 					<%
 					}
-					for(int i=0; i < 1;i++){
 						%>
-						<tr></tr>
-					<%
-						}
-					%>
-
-
-
-
 
 				<%
 					for (int i = 0; i < 1; i++) {
@@ -98,17 +84,17 @@
 
 
 
-				<tr>
+				<tr style="text-align:center">
 					<th>会計金額</th>
-					<td><%= format.moneyFormat(total)%></td>
+					<td><%=order.getPrice()%></td>
 				</tr>
 
-				<tr>
+				<tr style="text-align:center">
 					<th>発注日</th>
 					<td><%=order.getDate()%></td>
 				</tr>
 
-				<tr>
+				<tr style="text-align:center">
 					<th>入金状況</th>
 					<td><%if(order.getPayment().equals("入金済み")){ %>
 							<select name="payment" id="payment">
@@ -122,7 +108,8 @@
 						<%}%>
 					</td>
 				</tr>
-				<tr>
+
+				<tr style="text-align:center">
 					<th>発送状況</th>
 					<td><%if(order.getSend().equals("発送済み")){ %>
 							<select name="payment" id="payment">
@@ -140,8 +127,7 @@
 							</select>
 						<%} %>
 					</td>
-				</tr>
-				<tr>
+				<tr style="text-align:center">
 					<th>備考欄</th>
 					<td><%=order.getMessage()%></td>
 				</tr>
@@ -149,14 +135,11 @@
 					}
 				%>
 			</table>
-			<div
-				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
-				<input type="hidden" name="name" value="<%=order_list.get(0).getName() %>">
-				<input type="hidden" name="orderTime" value="<%=order_list.get(0).getOrderTime() %>">
+			<div style="width: 950px; text-align: left; margin-left: 850px; margin-top: 30px">
 				<input type="submit" value="更新">
 			</div>
 		</form>
-	</div>
+
 	<div style="margin: 50 auto; width: 50"></div>
 
 	<!-- フッター部分 -->
