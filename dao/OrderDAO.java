@@ -92,58 +92,58 @@ public class OrderDAO {
 
 
 	// DBに登録されているデータを全件取得するメソッド
-		// 戻り値 ArrayList<Order> orderList
-		public ArrayList<Order> selectAllGroup() {
+	// 戻り値 ArrayList<Order> orderList
+	public ArrayList<Order> selectAllGroup() {
 
-			Connection con = null;
-			Statement smt = null;
+		Connection con = null;
+		Statement smt = null;
 
-			ArrayList<Order> orderList = new ArrayList<Order>();
+		ArrayList<Order> orderList = new ArrayList<Order>();
 
 
-			try {
-				// DBと接続
-				con = getConnection();
-				// データ操作の準備
-				smt = con.createStatement();
-				// DB上のレコードを全件取得するSQL文
-				String sql = "select * from order_info inner join uniform_info on uniform_info.uniform_id=order_info.uniform_id group by name,order_time order by order_date desc, order_time desc";
+		try {
+			// DBと接続
+			con = getConnection();
+			// データ操作の準備
+			smt = con.createStatement();
+			// DB上のレコードを全件取得するSQL文
+			String sql = "select * from order_info inner join uniform_info on uniform_info.uniform_id=order_info.uniform_id group by name,order_time order by order_date desc, order_time desc";
 
-				// 取得したレコードをResultSetへ格納
-				ResultSet rs = smt.executeQuery(sql);
-				// 取得したレコードの各値をOrderオブジェクト
-				// へセット
-				while (rs.next()) {
-					Order order = new Order();
-					order.setOrderid(rs.getInt("order_id"));
-					order.setName(rs.getString("name"));
-					order.setQuantity(Integer.parseInt(rs.getString("quantity")));
-					order.setPrice(Integer.parseInt(rs.getString("price")));
-					order.setDate(rs.getString("order_date"));
-					order.setPayment(rs.getString("payment"));
-					order.setSend(rs.getString("send"));
-					order.setOrderTime(rs.getString("order_time"));
-					orderList.add(order);
-				}
-				// リソース解放
-			} catch (Exception e) {
-				throw new IllegalStateException(e);
-			} finally {
-				if (smt != null) {
-					try {
-						smt.close();
-					} catch (SQLException ignore) {
-					}
-				}
-				if (con != null) {
-					try {
-						con.close();
-					} catch (SQLException ignore) {
-					}
+			// 取得したレコードをResultSetへ格納
+			ResultSet rs = smt.executeQuery(sql);
+			// 取得したレコードの各値をOrderオブジェクト
+			// へセット
+			while (rs.next()) {
+				Order order = new Order();
+				order.setOrderid(rs.getInt("order_id"));
+				order.setName(rs.getString("name"));
+				order.setQuantity(Integer.parseInt(rs.getString("quantity")));
+				order.setPrice(Integer.parseInt(rs.getString("price")));
+				order.setDate(rs.getString("order_date"));
+				order.setPayment(rs.getString("payment"));
+				order.setSend(rs.getString("send"));
+				order.setOrderTime(rs.getString("order_time"));
+				orderList.add(order);
+			}
+			// リソース解放
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
 				}
 			}
-			return orderList;
-		}// メソッド終了
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return orderList;
+	}// メソッド終了
 
 	// 受注詳細を受け取るメソッド
 	// 戻り値：ArrayList<Order> orderList 引数：String name String time
@@ -214,7 +214,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET payment='" + payment + "',send='発送準備中' " + "WHERE name='" + name
+		String sql = "UPDATE order_info SET payment='" + payment + ",send='発送準備中' " + "WHERE name='" + name
 				+ "' && order_time='" + orderTime + "'";
 
 		try {
@@ -255,7 +255,7 @@ public class OrderDAO {
 
 		// SQL
 		String sql = "UPDATE order_info SET send='" + send +
-				"'WHERE name='" + name + "' && order_time='" + orderTime + "'";
+				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
 
@@ -294,7 +294,8 @@ public class OrderDAO {
 		Statement smt = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "'WHERE name='" + name+ "' && order_time='" + orderTime + "'";
+		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "WHERE name='" + name
+				+ "' && order_time='" + orderTime + "'";
 
 		try {
 
@@ -333,7 +334,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		//SQL
-		String sql = "UPDATE order_info SET payment='" + payment + "'send"
+		String sql = "UPDATE order_info SET payment='" + payment + "send"
 				+ "WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
@@ -372,10 +373,10 @@ public class OrderDAO {
 		Connection con = null;
 		Statement smt = null;
 
-		String sql = "INSERT INTO order_info VALUES(" + order.getName() + "','" + order.getEmail() + "','"
+		String sql = "INSERT INTO order_info VALUES(0,'" + order.getName() + "','" + order.getEmail() + "','"
 				+ order.getAddress() + "','" + order.getTelNumber() + "','" + order.getUniformid() + "','"
 				+ order.getQuantity() + "','" + order.getMessage() + "','" + order.getPayment() + "','"
-				+ order.getSend() + "',',CURDATE(),CURTIME())";
+				+ order.getSend() + "',CURDATE(),CURTIME())";
 
 		try {
 
