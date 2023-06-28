@@ -58,16 +58,11 @@
 						if(cart_list.get(i).getUniformid().equals(uniform_list.get(j).getUniformid())){
 				%>
 				<td><%= i + 1 %></td>
-				<td>
-
-						<%= uniform_list.get(j).getUniformType() %>
-
-					</td>
+				<td><%= uniform_list.get(j).getUniformType() %></td>
 				<td><%= cart_list.get(i).getQuantity() %></td>
 				<td><%= obj.moneyFormat(cart_list.get(i).getQuantity() * uniform_list.get(j).getPrice()) %></td>
-				<td>
-					<a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a></td>
-				</tr>
+				<td><a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a></td>
+
 			<%
 							sum += cart_list.get(i).getQuantity() * uniform_list.get(j).getPrice();
 							}
@@ -75,6 +70,7 @@
 					}
 				}
 			%>
+			</tr>
 		</table>
 
 		<br>
