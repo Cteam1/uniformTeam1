@@ -136,8 +136,6 @@
 						<%}else if(order.getSend().equals("未発送")) {%>
 							<select name="send" id="send">
 							<option><%=order.getSend()%></option>
-							<option value="未発送">未発送</option>
-							<option value="発送準備中">発送準備中</option>
 							<option value="発送済み">発送済</option>
 							</select>
 						<%} %>
