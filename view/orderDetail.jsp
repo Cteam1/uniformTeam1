@@ -136,7 +136,14 @@
 				%>
 			</table>
 			<div style="width: 950px; text-align: left; margin-left: 850px; margin-top: 30px">
+				<%
+				for (int i = 0; i < 1; i++) {
+					Order order = (Order) order_list.get(i);
+				if(order.getSend().equals("未発送") || order.getSend().equals("発送準備中")){ %>
 				<input type="submit" value="更新">
+								<%
+					}}
+				%>
 			</div>
 		</form>
 
