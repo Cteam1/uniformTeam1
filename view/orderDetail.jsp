@@ -110,7 +110,7 @@
 							<select name="payment" id="payment">
 							<option value="入金済み">入金済み</option>
 							</select>
-						<%}else if(order.getPayment().equals("未入金")){ %>
+						<%}else if(order.getPayment().equals("入金待ち")){ %>
 							<select name="payment" id="payment">
 							<option><%=order.getPayment()%></option>
 							<option value="入金済み">入金済み</option>
