@@ -24,7 +24,8 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 
 
 		<!-- カートに入れた書籍を示すテーブル -->
-		<table style="margin-left:630px">
+		<div style= "text-align:center">
+		<table style="margin:0 auto">
 			<tr>
 				<th>ユニフォームA</th>
 				<td><%=tempList.get(0).getQuantity()%></td>
@@ -38,6 +39,7 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 				<td><%=tempList.get(2).getQuantity()%></td>
 			</tr>
 		</table>
+		</div>
 
 
 			<form action="<%= request.getContextPath() %>/showCart">
