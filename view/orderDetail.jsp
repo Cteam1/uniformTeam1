@@ -21,7 +21,7 @@
 		<!-- ナビゲーション  -->
 
 		<p style="width: 950px; text-align: center">
-			<a href="<%=request.getContextPath()%>/view/orderList.jsp">[受注状況一覧へ戻る]</a>
+			<a href="<%=request.getContextPath()%>/orderList">[受注状況一覧へ戻る]</a>
 		</p>
 
 		<hr size="4" color="blue" style="width: 950px">
@@ -157,6 +157,8 @@
 			</table>
 			<div
 				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
+				<input type="hidden" name="name" value="<%=order.getName() %>">
+				<input type="hidden" name="orderTime" value="<%=order.getOrderTime() %>">
 				<input type="submit" value="更新">
 			</div>
 		</form>
