@@ -22,7 +22,7 @@
 	</div>
 
 	<!-- 注文詳細情報コンテンツ部分 -->
-	<div style="margin: 50 auto;">
+	
 		<h2 style="text-align: center">
 			<font>注文状況詳細</font>
 		</h2>
@@ -35,7 +35,7 @@
 			href="<%=request.getContextPath()%>/logout">[ログアウト]</a>
 
 		<hr style="height: 2; background-color: green;" />
-	</div>
+	
 	<div style="margin: auto; width: 600px">
 		<form action="<%=request.getContextPath()%>/payment" id="payment"
 			id="send">
