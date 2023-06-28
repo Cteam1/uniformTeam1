@@ -15,7 +15,7 @@
 	<%@include file="/common/header.jsp"%>
 
 	<div>
-		<p><a href="<%=request.getContextPath() %>/view/menu.jsp">[メニュー]</a></p>
+		<p><a href="<%=request.getContextPath() %>/view/guestMenu.jsp">[メニュー]</a></p>
 		<h2 style="text-align: center">商品一覧</h2>
 		<hr style="height: 2; background-color: #000000">
 	</div>
@@ -39,9 +39,10 @@
 					<td style="text-align: center"><%=uniform_list.get(i).getUniformType()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getPrice()%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getStock()%></td>
-					<td><input type="text" name="quantity<%=i%>"><input
-						type="hidden" name="uniform<%=i%>"
-						value="<%=uniform_list.get(i).getUniformid()%>"></td>
+					<td>
+						<input type="text" name="quantity<%=i%>" value="0">
+						<input type="hidden" name="uniform<%=i%>" value="<%=uniform_list.get(i).getUniformid()%>">
+					</td>
 				</tr>
 
 				<%
