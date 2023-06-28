@@ -57,8 +57,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			} else { // ID,パスワード入力値エラー
 				request.setAttribute("error", error);
-				request.setAttribute("cmd", cmd);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 			}
 		}
 	}
