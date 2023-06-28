@@ -89,7 +89,7 @@ public class UniformDAO {
 
 	}
 
-	public static Uniform selectByUniformid(String uniform_id) {
+	public Uniform selectByUniformid(String uniform_id) {
 		Connection con = null;
 		Statement smt = null;
 
