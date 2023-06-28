@@ -32,7 +32,7 @@ public class UniformListServlet extends HttpServlet {
 
 		}
 		catch (IllegalStateException e) {
-			cmd = "menu";
+			cmd = "guestMenu";
 			error = "DBに接続できなかったため、ユニフォーム一覧は表示できませんでした。";
 			return;
 		}
