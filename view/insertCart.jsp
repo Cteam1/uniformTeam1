@@ -8,7 +8,7 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 
 <html>
 	<head>
-		<title>カートに入れました。</title>
+		<title>カート追加確認</title>
 	</head>
 
 	<body>
@@ -32,30 +32,29 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 		<div style= "text-align:center">
 
 		<h3>下記の商品をカートに追加しました。</h3>
+		<table style="margin:0 auto; text-align:center;" border="1">
+			<tr>
+				<th style="background-color: #dcdcdc; width: 150">ユニフォームA</th>
+				<td style="width: 150"><%=tempList.get(0).getQuantity()%>&nbsp;着</td>
+			</tr>
+			<tr>
+				<th style="background-color: #dcdcdc; width: 150">ユニフォームB</th>
+				<td style="width: 150"><%=tempList.get(1).getQuantity()%>&nbsp;着</td>
+			</tr>
+			<tr>
+				<th style="background-color: #dcdcdc; width: 150">ユニフォームC</th>
+				<td style="width: 150"><%=tempList.get(2).getQuantity()%>&nbsp;着</td>
+			</tr>
 
-		<table style="margin:0 auto">
-			<tr>
-				<th>ユニフォームA</th>
-				<td><%=tempList.get(0).getQuantity()%>着</td>
-			</tr>
-			<tr>
-				<th>ユニフォームB</th>
-				<td><%=tempList.get(1).getQuantity()%>着</td>
-			</tr>
-			<tr>
-				<th>ユニフォームC</th>
-				<td><%=tempList.get(2).getQuantity()%>着</td>
-			</tr>
 		</table>
+		<br>
+		<br>
+		<form action="<%= request.getContextPath() %>/showCart">
+				<input type="submit" value="カート確認">
+		</form>
 		</div>
 
-
-			<form action="<%= request.getContextPath() %>/showCart">
-				<input type="submit" value="カート確認" style="margin-left:800px">
-			</form>
-
-
-			<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/footer.jsp"%>
 
 
 	</body>
