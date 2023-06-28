@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,19 +24,20 @@ public class OrderFormServlet extends HttpServlet {
 		String error = "";
 
 		try {
+
+			UniformDAO uniformDAO = new UniformDAO();
+			OrderDAO orderDAO = new OrderDAO();
+			Calendar calendar = Calendar.getInstance();
+
 			HttpSession session = request.getSession();
 
 			//セッションからカート情報を取得(入力値は仮
 			ArrayList<Order> order_list =(ArrayList<Order>) session.getAttribute("order_list");
 
 			//リクエストスコープからユニフォームの注文情報を取得
-			ArrayList<Uniform> uniform_list = (ArrayList<Uniform>)request.getAttribute("uniform_list");
-
+			ArrayList<Uniform> uniform_list = uniformDAO.selectAll();
 			//セッションスコープから、注文個数の情報を取得
 			ArrayList<MultiBuy> multiBuys = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
-
-			UniformDAO uniformDAO = new UniformDAO();
-			OrderDAO orderDAO = new OrderDAO();
 
 
 			//リクエストスコープから購入者情報を取得
@@ -50,6 +52,9 @@ public class OrderFormServlet extends HttpServlet {
 
 			//注文情報を元に行う各種処理の実行
 			for (int i = 0; i < uniform_list.size();i++) {
+
+				//個数を取得
+				int quantity = multiBuys.get(i).getQuantity();
 
 				//購入に伴う在庫の増減処理
 				//i番目のユニフォーム情報を取得
@@ -66,9 +71,10 @@ public class OrderFormServlet extends HttpServlet {
 				order.setUniformid(uniform_list.get(i).getUniformid());
 				order.setUniformType(uniform_list.get(i).getUniformType());
 				order.setPrice((uniform_list.get(i).getPrice()));
-				int quantity = order_list.get(i).getQuantity();
+				order.setQuantity(quantity);
 
 				//フォームから受け取った情報
+				order.setOrderid(0);
 				order.setName(name);
 				order.setEmail(email);
 				order.setAddress(address);
@@ -76,6 +82,8 @@ public class OrderFormServlet extends HttpServlet {
 				order.setMessage(message);
 				order.setPayment("入金待ち");
 				order.setSend("未発送");
+				order.setDate("");
+				order.setOrderTime("");
 
 				total += order.getPrice() * quantity;
 
