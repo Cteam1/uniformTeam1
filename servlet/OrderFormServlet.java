@@ -22,6 +22,7 @@ public class OrderFormServlet extends HttpServlet {
 	public void  doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 
 		String error = "";
+		String cmd = "";
 
 		try {
 
@@ -47,8 +48,15 @@ public class OrderFormServlet extends HttpServlet {
 			String telNumber = request.getParameter("telNumber");
 			String message = request.getParameter("message");
 
+
 			//合計金額用
 			int total = 0;
+
+			if (multiBuys == null || multiBuys.isEmpty()) {
+				error = "カートの中に商品が入っていません。";
+				cmd = "uniformList";
+				return;
+			}
 
 			//注文情報を元に行う各種処理の実行
 			for (int i = 0; i < uniform_list.size();i++) {
@@ -60,6 +68,13 @@ public class OrderFormServlet extends HttpServlet {
 				//i番目のユニフォーム情報を取得
 				Uniform uniform = uniformDAO.selectByUniformid(uniform_list.get(i).getUniformid());
 				int afterStock = ((uniform.getStock()) - (multiBuys.get(i).getQuantity()));
+
+				// 在庫数超過のチェック
+				if (afterStock < 0) {
+					error = uniform_list.get(i).getUniformType() + "が在庫数超過して購入しています！";
+					cmd = "showCart";
+					return;
+				}
 
 				//購入後の在庫数をセット
 				uniform.setStock(afterStock);
@@ -87,6 +102,25 @@ public class OrderFormServlet extends HttpServlet {
 
 				total += order.getPrice() * quantity;
 
+				// 入力値のチェック
+				if (name == null || name.equals("")) {
+					error = "名前が入力されていません！";
+					cmd = "showCart";
+				}
+				if (email == null || email.equals("")) {
+					error = "メールアドレスが入力されていません！";
+					cmd = "showCart";
+				}
+				if (address == null || address.equals("")) {
+					error = "住所が入力されていません！";
+					cmd = "showCart";
+				}
+				if (telNumber == null || telNumber.equals("")) {
+					error = "電話番号が入力されていません！";
+					cmd = "showCart";
+				}
+
+
 				//在庫更新
 				uniformDAO.updateStock(uniform_list.get(i).getUniformid(), afterStock);
 
@@ -104,8 +138,10 @@ public class OrderFormServlet extends HttpServlet {
 			session.setAttribute("multiBuyList", null);
 
 
-		}catch (Exception e) {
-
+		}catch (IllegalStateException e) {
+			error = "DB接続エラーのため、カート内の商品を購入することができませんでした。";
+			cmd = "guestMenu";
+			return;
 
 		}finally {
 			if(error.equals("")) {
@@ -113,6 +149,7 @@ public class OrderFormServlet extends HttpServlet {
 
 			}else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}
