@@ -214,7 +214,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET payment='" + payment + ",send='発送準備中' " + "WHERE name='" + name
+		String sql = "UPDATE order_info SET payment='" + payment + "',send='発送準備中' " + "WHERE name='" + name
 				+ "' && order_time='" + orderTime + "'";
 
 		try {
@@ -255,7 +255,7 @@ public class OrderDAO {
 
 		// SQL
 		String sql = "UPDATE order_info SET send='" + send +
-				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
+				"'WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
 
@@ -294,8 +294,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "WHERE name='" + name
-				+ "' && order_time='" + orderTime + "'";
+		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "'WHERE name='" + name+ "' && order_time='" + orderTime + "'";
 
 		try {
 
@@ -334,7 +333,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		//SQL
-		String sql = "UPDATE order_info SET payment='" + payment + "send"
+		String sql = "UPDATE order_info SET payment='" + payment + "'send"
 				+ "WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
