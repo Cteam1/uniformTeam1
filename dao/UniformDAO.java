@@ -141,8 +141,6 @@ public class UniformDAO {
 		Connection con = null;
 		Statement smt = null;
 
-		Uniform uni = new Uniform();
-
 		try {
 			//★引数の情報を利用し、検索用のSQL文を文字列として定義します
 			String sql = "UPDATE uniform_info SET stock=" + stock + " WHERE uniform_id='" + uniform_id + "'";
