@@ -212,10 +212,16 @@ public class OrderDAO {
 
 		Connection con = null;
 		Statement smt = null;
+		String sql = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET payment='" + payment + ",send='発送準備中' " + "WHERE name='" + name
+		if( payment.equals("入金済み")) {
+			sql = "UPDATE order_info SET payment='" + payment + "',send='発送準備中' " + "WHERE name='" + name
 				+ "' && order_time='" + orderTime + "'";
+		}else {
+			sql = "UPDATE order_info SET payment='" + payment
+					+ "' send='未発送' WHERE name='" + name + "' && order_time='" + orderTime + "'";
+		}
 
 		try {
 
@@ -255,7 +261,7 @@ public class OrderDAO {
 
 		// SQL
 		String sql = "UPDATE order_info SET send='" + send +
-				"WHERE name='" + name + "' && order_time='" + orderTime + "'";
+				"' WHERE name='" + name + "' && order_time='" + orderTime + "'";
 
 		try {
 
@@ -294,7 +300,7 @@ public class OrderDAO {
 		Statement smt = null;
 
 		// SQL
-		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "WHERE name='" + name
+		String sql = "UPDATE order_info SET send='" + send + "',payment='" + payment + "' WHERE name='" + name
 				+ "' && order_time='" + orderTime + "'";
 
 		try {
@@ -326,45 +332,7 @@ public class OrderDAO {
 
 	}// メソッド終了
 
-	// 入金情報を変更するメソッド
-	// 引数 payment(入金情報)、name(名前)、orderTime(注文時刻)
-	public void paymentReset(String payment, String name , String orderTime) {
 
-		Connection con = null;
-		Statement smt = null;
-
-		//SQL
-		String sql = "UPDATE order_info SET payment='" + payment + "send"
-				+ "WHERE name='" + name + "' && order_time='" + orderTime + "'";
-
-		try {
-
-			con = getConnection();
-			smt = con.createStatement();
-
-			//SQL実行
-			smt.executeUpdate(sql);
-
-		} catch (Exception e) {
-			// 例外をスロー
-			throw new IllegalStateException(e);
-		} finally {
-			// リソース解放
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
-
-	}// メソッド終了
 
 	// 購入情報をDBへ登録するメソッド
 	// 引数 order
@@ -373,10 +341,10 @@ public class OrderDAO {
 		Connection con = null;
 		Statement smt = null;
 
-		String sql = "INSERT INTO order_info VALUES(0,'" + order.getName() + "','" + order.getEmail() + "','"
+		String sql = "INSERT INTO order_info VALUES(" + order.getName() + "','" + order.getEmail() + "','"
 				+ order.getAddress() + "','" + order.getTelNumber() + "','" + order.getUniformid() + "','"
 				+ order.getQuantity() + "','" + order.getMessage() + "','" + order.getPayment() + "','"
-				+ order.getSend() + "',CURDATE(),CURTIME())";
+				+ order.getSend() + "',',CURDATE(),CURTIME())";
 
 		try {
 
@@ -404,5 +372,4 @@ public class OrderDAO {
 		}
 
 	}// メソッド終了
-
 }
