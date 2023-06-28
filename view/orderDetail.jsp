@@ -151,6 +151,8 @@
 			</table>
 			<div
 				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
+				<input type="hidden" name="name" value="<%=order.getName() %>">
+				<input type="hidden" name="orderTime" value="<%=order.getOrderTime() %>">
 				<input type="submit" value="更新">
 			</div>
 		</form>
