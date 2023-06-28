@@ -18,7 +18,6 @@
 		<br>
 		<p><a href="<%= request.getContextPath() %>/orderList">注文一覧</a></p>
 		<p><a href="<%= request.getContextPath() %>/logout">ログアウト</a></p>
-		<p><a href="<%= request.getContextPath() %>/view/menu.jsp">メインメニュー</a></p>
 
 	</div>
 
