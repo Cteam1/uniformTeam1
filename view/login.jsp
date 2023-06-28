@@ -9,7 +9,11 @@ String message =(String)request.getAttribute("message");
 </head>
 <body>
 	<!-- ここでヘッダー読み込み -->
-	<%@include file="/common/header.jsp"%>
+	<div style="margin-top: 30px">
+		<h1 style="text-align: center;">ユニフォーム受注管理システム</h1>
+		<hr
+			style="text-align: center; background-color: green; width: auto; height: 5px">
+	</div>
 
 	<div style="margin: 50 auto;">
 		<h2 style="text-align: center">
