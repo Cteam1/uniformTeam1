@@ -1,9 +1,11 @@
-<%@page import="bean.MultiBuy"%>
-<%@page import="java.util.ArrayList"%>
+
+<%@page import="java.util.ArrayList,bean.*,dao.*"%>
 <%@page contentType= "text/html; charset=UTF-8" %>
 
 <%
+UniformDAO uniformDao = new UniformDAO();
 ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempList");
+ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 %>
 
 <html>
@@ -33,19 +35,23 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 
 		<h3>下記の商品をカートに追加しました。</h3>
 		<table style="margin:0 auto; text-align:center;" border="1">
+			<% if (tempList != null) {
+				for (int i = 0; i < tempList.size(); i++) {
+					for(int j = 0;j < uniform_list.size();j++){ %>
 			<tr>
-				<th style="background-color: #dcdcdc; width: 150">ユニフォームA</th>
-				<td style="width: 150"><%=tempList.get(0).getQuantity()%>&nbsp;着</td>
-			</tr>
-			<tr>
-				<th style="background-color: #dcdcdc; width: 150">ユニフォームB</th>
-				<td style="width: 150"><%=tempList.get(1).getQuantity()%>&nbsp;着</td>
-			</tr>
-			<tr>
-				<th style="background-color: #dcdcdc; width: 150">ユニフォームC</th>
-				<td style="width: 150"><%=tempList.get(2).getQuantity()%>&nbsp;着</td>
-			</tr>
+				<%
+						if(tempList.get(i).getUniformid().equals(uniform_list.get(j).getUniformid())){
+				%>
+				<th style="background-color: #dcdcdc; width: 150"><%= uniform_list.get(j).getUniformType() %></th>
+				<td style="width: 150"><%=tempList.get(i).getQuantity()%>&nbsp;着</td>
+				<%
 
+							}
+						}
+					}
+				}
+			%>
+			</tr>
 		</table>
 		<br>
 		<br>
