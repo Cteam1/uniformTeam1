@@ -51,11 +51,11 @@ public class LoginServlet extends HttpServlet {
 			if (error.equals("")) {
 				//エラーが発生しなかった際は受注一覧画面に遷移
 				request.getRequestDispatcher("/view/adminMenu.jsp").forward(request, response);
-			} else if (cmd.equals("menu")){
+			} else if (cmd.equals("menu")){ // DB接続エラー
 				request.setAttribute("error", error);
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-			} else {
+			} else { // ID,パスワード入力値エラー
 				request.setAttribute("error", error);
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
