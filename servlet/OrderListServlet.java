@@ -10,7 +10,7 @@ import dao.*;
 
 public class OrderListServlet extends HttpServlet {
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// エラーメッセージ格納用変数
 		String error = "";
@@ -27,13 +27,13 @@ public class OrderListServlet extends HttpServlet {
 			ArrayList<Order> order_list = new ArrayList<Order>();
 			ArrayList<Order> order_list_group = new ArrayList<Order>();
 
-			// セッション取得
+			// セッション取得（使用しないが、不正ログインを防ぐため）
 			HttpSession session = request.getSession();
 			Admin admin = (Admin) session.getAttribute("admin");
 
 			if (admin == null) {// セッション切れの場合
 
-				error = "セッションが切れました。";
+				error = "セッションが切れたため、商品一覧を確認することができませんでした。";
 				cmd = "logout";
 				return;
 
@@ -49,7 +49,7 @@ public class OrderListServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {// DBエラーが起きた場合
 
-			error = "エラーが起こった為、受注一覧は表示できませんでした。";
+			error = "DB接続エラーのため、受注一覧は表示できませんでした。";
 			cmd = "logout";
 
 		} finally {
