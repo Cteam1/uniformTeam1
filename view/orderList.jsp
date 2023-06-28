@@ -41,7 +41,18 @@
 			<tr style="text-align: center">
 				<td><%= order_list.size() - i %></td>
 				<td><%= order_list_group.get(i).getName() %></td>
-				<td><%= obj.moneyFormat(order_list_group.get(i).getPrice() * order_list_group.get(i).getQuantity()) %></td>
+				<td>
+					<%
+						int total = 0;
+						for(int j = 0; j < order_list.size(); j++) {
+							if (order_list_group.get(i).getDate().equals(order_list.get(j).getDate()) &&
+									order_list_group.get(i).getOrderTime().equals(order_list.get(j).getOrderTime())) {
+								total += order_list.get(j).getPrice() * order_list.get(j).getQuantity();
+							}
+						}
+					%>
+					<%= obj.moneyFormat(total) %>
+				</td>
 				<td><%= order_list_group.get(i).getDate() %></td>
 				<td><%= order_list_group.get(i).getPayment() %></td>
 				<td><%= order_list_group.get(i).getSend() %></td>
