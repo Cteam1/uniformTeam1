@@ -21,7 +21,7 @@
 		<!-- ナビゲーション  -->
 
 		<p style="width: 950px; text-align: center">
-			<a href="<%=request.getContextPath()%>/orderList">[受注状況一覧へ戻る]</a>
+			<a href="<%=request.getContextPath()%>/view/orderList.jsp">[受注状況一覧へ戻る]</a>
 		</p>
 
 		<hr size="4" color="blue" style="width: 950px">
@@ -61,58 +61,35 @@
 					}
 				%>
 				<tr>
-					<th rowspan="3">購入内容</th>
+
+					<th rowspan="<%=order_list.size()+1%>">購入内容</th>
 
 					<%
-						Order order = (Order) order_list.get(0);
+					for(int i=0; i < order_list.size();i++){
+						Order order = (Order) order_list.get(i);
+
 					%>
 
-					<td style="background-color: skyblue"><%=order.getUniformType()%>
+					<td><%=order.getUniformType()%>
 
 						<%=order.getQuantity()%></td>
-
-
-				</tr>
-
-				<tr>
-
-
+						</tr>
 					<%
-						if (order_list.get(1) != null) {
-							order = (Order) order_list.get(1);
-					%>
-
-					<td style="background-color: blue"><%=order.getUniformType()%>
-
-						<%=order.getQuantity()%></td>
+					}
+					for(int i=0; i < 1;i++){
+						%>
+						<tr></tr>
 					<%
 						}
 					%>
 
 
-				</tr>
 
-				<tr>
-
-
-					<%
-						if (order_list.get(2) != null) {
-							order = (Order) order_list.get(2);
-					%>
-
-					<td style="background-color: green"><%=order.getUniformType()%>
-
-						<%=order.getQuantity()%></td>
-
-					<%
-						}
-					%>
-				</tr>
 
 
 				<%
 					for (int i = 0; i < 1; i++) {
-						order = (Order) order_list.get(i);
+						Order order = (Order) order_list.get(i);
 				%>
 
 
@@ -141,7 +118,7 @@
 					<th>発送状況</th>
 					<td><select name="send" id="send">
 							<option><%=order.getSend()%></option>
-							<option value="未発送">未発送</option>
+							<option value="未">未発送</option>
 							<option value="発送準備中">発送準備中</option>
 							<option value="発送済">発送済</option>
 					</select></td>
@@ -157,8 +134,6 @@
 			</table>
 			<div
 				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
-				<input type="hidden" name="name" value="<%=order.getName() %>">
-				<input type="hidden" name="orderTime" value="<%=order.getOrderTime() %>">
 				<input type="submit" value="更新">
 			</div>
 		</form>
