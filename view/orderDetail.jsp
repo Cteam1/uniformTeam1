@@ -4,6 +4,10 @@
 <%
 	ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
 	MyFormat format = new MyFormat();
+	int total = 0;
+	for(int i = 0; i < order_list.size(); i++){
+		total += order_list.get(i).getPrice() * order_list.get(i).getQuantity();
+	}
 %>
 <html>
 <head>
@@ -96,7 +100,7 @@
 
 				<tr>
 					<th>会計金額</th>
-					<td><%=order.getPrice()%></td>
+					<td><%= format.moneyFormat(total)%></td>
 				</tr>
 
 				<tr>
@@ -149,8 +153,8 @@
 			</table>
 			<div
 				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
-				<input type="hidden" name="name" value="<%=order.getName() %>">
-				<input type="hidden" name="orderTime" value="<%=order.getOrderTime() %>">
+				<input type="hidden" name="name" value="<%=order_list.get(0).getName() %>">
+				<input type="hidden" name="orderTime" value="<%=order_list.get(0).getOrderTime() %>">
 				<input type="submit" value="更新">
 			</div>
 		</form>
