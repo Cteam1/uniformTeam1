@@ -141,7 +141,7 @@
 					<th>発送状況</th>
 					<td><select name="send" id="send">
 							<option><%=order.getSend()%></option>
-							<option value="未">未発送</option>
+							<option value="未発送">未発送</option>
 							<option value="発送準備中">発送準備中</option>
 							<option value="発送済">発送済</option>
 					</select></td>
