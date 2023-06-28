@@ -9,21 +9,25 @@ session.setAttribute("multiBuyList", multiBuys);
 %>
 <html>
 <head>
-<title>ユニフォーム受注管理システム</title>
+<title>メインメニュー</title>
 </head>
 <body>
 	<%@ include file="/common/header.jsp" %>
 
-	<hr style="text-align: center; background-color: black; width:auto; height: 5px">
-	<h2 style="text-align: center;">MENU</h2>
-	<hr style="text-align: center; background-color: black; width:auto; height: 5px">
-	<div style="margin-bottom: 350px">
-		<table style="margin: auto; border: 0;">
-			<tr><td><a href="<%=request.getContextPath() %>/view/guestMenu.jsp">【ストアトップへ】</a></td></tr>
+	<table style="margin: auto; width: 850px">
+		<tr style="text-align: center;">
+			<td style="font-size: 24px">メインメニュー</td>
+		</tr>
+	</table>
+	<hr style="text-align: center; background-color: blue; width:auto; height: 5px">
+	<br>
+	<br>
 
-			<tr><td><a href="<%=request.getContextPath() %>/view/login.jsp">【管理者ログイン】</a></td></tr>
-		</table>
-	</div>
+	<p style="text-align: center;"><a href="<%=request.getContextPath() %>/view/guestMenu.jsp">【購入者メニューへ】</a></p>
+	<p style="text-align: center;"><a href="<%=request.getContextPath() %>/view/login.jsp">【管理者ログインへ】</a></p>
+
+
+
 	<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

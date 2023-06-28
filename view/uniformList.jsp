@@ -1,7 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList, bean.Uniform"%>
+<%@page import="java.util.ArrayList, bean.Uniform,util.*"%>
 
 <%
+	MyFormat obj = new MyFormat();
 	ArrayList<Uniform> uniform_list = (ArrayList<Uniform>) request.getAttribute("uniform_list");
 %>
 
@@ -14,21 +15,26 @@
 
 	<%@include file="/common/header.jsp"%>
 
-	<div>
-		<p><a href="<%=request.getContextPath() %>/view/guestMenu.jsp">[メニュー]</a></p>
-		<h2 style="text-align: center">商品一覧</h2>
-		<hr style="height: 2; background-color: #000000">
-	</div>
-
-
+	<table style="margin: auto; width: 850px; text-align: center;">
+		<tr>
+			<td style="width: 160px">
+				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">【購入者メニュー】</a>
+			</td>
+			<td style="width: 508px; font-size: 24px">商品一覧</td>
+			<td style="width: 160px"></td>
+		</tr>
+	</table>
+	<hr style="text-align: center; background-color: blue; width:auto; height: 5px">
+	<br>
+	<br>
 	<div style="margin: 0 auto; width: 1000">
 		<form action="<%=request.getContextPath()%>/insertCart">
-			<table>
+			<table border="1">
 				<tr>
-					<th style="background-color: #6666ff; width: 300">種類</th>
-					<th style="background-color: #6666ff; width: 300">価格</th>
-					<th style="background-color: #6666ff; width: 300">在庫数</th>
-					<th style="background-color: #6666ff; width: 100">個数</th>
+					<th style="background-color: #dcdcdc; width: 300">種類</th>
+					<th style="background-color: #dcdcdc; width: 300">価格</th>
+					<th style="background-color: #dcdcdc; width: 300">在庫数</th>
+					<th style="background-color: #dcdcdc; width: 100">購入数</th>
 				</tr>
 				<%
 					if (uniform_list != null) {
@@ -37,7 +43,7 @@
 
 				<tr>
 					<td style="text-align: center"><%=uniform_list.get(i).getUniformType()%></td>
-					<td style="text-align: center"><%=uniform_list.get(i).getPrice()%></td>
+					<td style="text-align: center"><%=obj.moneyFormat(uniform_list.get(i).getPrice())%></td>
 					<td style="text-align: center"><%=uniform_list.get(i).getStock()%></td>
 					<td>
 						<input type="text" name="quantity<%=i%>" value="0">
