@@ -52,7 +52,12 @@ public class OrderFormServlet extends HttpServlet {
 			//合計金額用
 			int total = 0;
 
-			if (multiBuys == null || multiBuys.isEmpty()) {
+			if (multiBuys == null) {
+				error = "セッションが切れたため、購入することができませんでした。";
+				cmd = "menu";
+				return;
+			}
+			if (multiBuys.isEmpty()) {
 				error = "カートの中に商品が入っていません。";
 				cmd = "uniformList";
 				return;
