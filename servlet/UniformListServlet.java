@@ -31,10 +31,10 @@ public class UniformListServlet extends HttpServlet {
 			request.setAttribute("uniform_list", uniformList);
 
 		}
-		catch (Exception e) {
-
+		catch (IllegalStateException e) {
 			cmd = "menu";
-			error = "エラーが発生しました。";
+			error = "DBに接続できなかったため、ユニフォーム一覧は表示できませんでした。";
+			return;
 		}
 		finally {
 			if (cmd.equals("")) {
