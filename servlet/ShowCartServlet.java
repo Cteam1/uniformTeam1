@@ -31,19 +31,24 @@ public class ShowCartServlet extends HttpServlet {
 			// セッションからカート情報（multiBuy）を取得
 			ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
 
+			if (multiBuyList == null) {
+				error = "セッションが切れたためカート一覧を表示することができませんでした。";
+				cmd = "menu";
+				return;
+			}
+			if (multiBuyList.isEmpty()) {
+				error = "カートの中に商品が入っていません。";
+				cmd = "uniformList";
+				return;
+			}
+
 			// DAOオブジェクト宣言
 			UniformDAO uniformDao = new UniformDAO();
 
 			// ユニフォーム情報を取得
 			ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 
-			if (multiBuyList == null) {// セッション切れの場合
 
-				error = "セッションが切れました。";
-				cmd = "guestMenu";
-				return;
-
-			}
 
 			if (delno != null) {// delnoがnullでない場合
 
@@ -58,7 +63,7 @@ public class ShowCartServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {// DBエラーが起きた場合
 
-			error = "エラーが起こった為、カート一覧は表示できませんでした。";
+			error = "DBに接続できなかったためカート一覧は表示できませんでした。";
 			cmd = "guestMenu";
 
 		} finally {
