@@ -341,10 +341,10 @@ public class OrderDAO {
 		Connection con = null;
 		Statement smt = null;
 
-		String sql = "INSERT INTO order_info VALUES(" + order.getName() + "','" + order.getEmail() + "','"
-				+ order.getAddress() + "','" + order.getTelNumber() + "','" + order.getUniformid() + "','"
-				+ order.getQuantity() + "','" + order.getMessage() + "','" + order.getPayment() + "','"
-				+ order.getSend() + "',',CURDATE(),CURTIME())";
+		String sql = "INSERT INTO order_info VALUES(0,'" + order.getName() + "','" + order.getEmail() + "','"
+				+ order.getAddress() + "','" + order.getTelNumber() + "','" + order.getUniformid() + "',"
+				+ order.getQuantity() + ",'" + order.getMessage() + "','" + order.getPayment() + "','"
+				+ order.getSend() + "',CURDATE(),CURTIME())";
 
 		try {
 
