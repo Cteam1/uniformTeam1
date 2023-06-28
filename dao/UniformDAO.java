@@ -134,5 +134,32 @@ public class UniformDAO {
 		}
 		return uni;
 	}
+
+	//ユニフォームの座個数を変更するメソッド
+	public void updateStock(String uniform_id, int stock) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		Uniform uni = new Uniform();
+
+		try {
+			//★引数の情報を利用し、検索用のSQL文を文字列として定義します
+			String sql = "UPDATE uniform_info SET stock=" + stock + " WHERE uniform_id='" + uniform_id + "'";
+
+			//BookDAOクラスに定義した、getConnection()メソッドを利用してConnectionオブジェクトを生成します
+			con = getConnection();
+
+			//ConnectionオブジェクトのcreateStatement（）メソッドを利用してStatementオブジェクトを生成します。
+			smt = con.createStatement();
+
+			//★SQL文を実行
+			smt.executeUpdate(sql);
+		}
+		catch (Exception e) {
+
+		}
+
+	}
 }
 
