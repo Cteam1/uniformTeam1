@@ -1,6 +1,19 @@
+<%@page import="bean.MultiBuy"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Order"%>
 
+<%
+//セッションからユーザー情報を取得
+ArrayList<MultiBuy> multiBuys = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
+//セッション切れか確認
+if(multiBuys == null){
+	// セッション切れならerror.jspへフォワード
+	request.setAttribute("message","セッション切れの為、メニュー画面が表示できませんでした。");
+	request.setAttribute("cmd","logout");
+	request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+	return;
+}
+%>
 
 <html>
 
