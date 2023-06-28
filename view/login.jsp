@@ -15,7 +15,7 @@ String message =(String)request.getAttribute("message");
 			style="text-align: center; background-color: green; width: auto; height: 5px">
 	</div>
 
-	<div style="margin: 50 auto;">
+	
 		<h2 style="text-align: center">
 			<font>管理者ログイン</font>
 		</h2>
@@ -24,7 +24,7 @@ String message =(String)request.getAttribute("message");
 			<a style="margin-top: 50px; margin-left: 50px;" href="<%=request.getContextPath()%>/logout">[ログアウト]</a>
 
 		<hr style="height: 2; background-color:green;" />
-	</div>
+	
 
 	<div style="margin-top:50px;">
 		<form action="<%=request.getContextPath()%>/login" method="post">
