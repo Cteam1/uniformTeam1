@@ -21,7 +21,7 @@
 		<!-- ナビゲーション  -->
 
 		<p style="width: 950px; text-align: center">
-			<a href="<%=request.getContextPath()%>/view/orderList.jsp">[受注状況一覧へ戻る]</a>
+			<a href="<%=request.getContextPath()%>/orderList">[受注状況一覧へ戻る]</a>
 		</p>
 
 		<hr size="4" color="blue" style="width: 950px">
@@ -106,24 +106,39 @@
 
 				<tr>
 					<th>入金状況</th>
-					<td><select name="payment" id="payment">
+					<td><%if(order.getPayment().equals("入金済み")){ %>
+							<select name="payment" id="payment">
+							<option value="入金済み">入金済み</option>
+							</select>
+						<%}else if(order.getPayment().equals("未入金")){ %>
+							<select name="payment" id="payment">
 							<option><%=order.getPayment()%></option>
-							<option value="入金待ち">入金待ち</option>
-							<option value="入金済">入金済</option>
-
-					</select></td>
+							<option value="入金済み">入金済み</option>
+							</select>
+						<%}%>
+					</td>
 				</tr>
-
 				<tr>
 					<th>発送状況</th>
-					<td><select name="send" id="send">
+					<td><%if(order.getSend().equals("発送済み")){ %>
+							<select name="payment" id="payment">
+							<option value="発送済み">発送済み</option>
+							</select>
+						<%}else if(order.getSend().equals("発送準備中")){ %>
+							<select name="send" id="send">
 							<option><%=order.getSend()%></option>
-							<option value="未">未発送</option>
+							<option value="発送済み">発送済</option>
+							</select>
+						<%}else if(order.getSend().equals("未発送")) {%>
+							<select name="send" id="send">
+							<option><%=order.getSend()%></option>
+							<option value="未発送">未発送</option>
 							<option value="発送準備中">発送準備中</option>
-							<option value="発送済">発送済</option>
-					</select></td>
+							<option value="発送済み">発送済</option>
+							</select>
+						<%} %>
+					</td>
 				</tr>
-
 				<tr>
 					<th>備考欄</th>
 					<td><%=order.getMessage()%></td>
@@ -134,6 +149,8 @@
 			</table>
 			<div
 				style="width: 950px; text-align: left; margin-left: 240px; margin-top: 30px">
+				<input type="hidden" name="name" value="<%=order.getName() %>">
+				<input type="hidden" name="orderTime" value="<%=order.getOrderTime() %>">
 				<input type="submit" value="更新">
 			</div>
 		</form>
