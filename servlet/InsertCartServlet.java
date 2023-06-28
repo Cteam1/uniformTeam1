@@ -29,7 +29,7 @@ public class InsertCartServlet extends HttpServlet {
 			if (multiBuyList == null) {
 				// セッション切れならerror.jspへフォワード
 				error = "セッション切れの為、カートに入れることができませんでした。";
-				cmd = "logout";
+				cmd = "menu";
 				return;
 			}
 
@@ -51,6 +51,18 @@ public class InsertCartServlet extends HttpServlet {
 			String uniform_idC = request.getParameter("uniform2");
 			Uniform uniformC = uniformDao.selectByUniformid(uniform_idC);
 			int quantityC = Integer.parseInt(request.getParameter("quantity2"));
+
+			if (quantityA < 0 || quantityB < 0 || quantityC < 0) {
+				error = "注文数に不適切な値が入力されています！";
+				cmd = "uniformlist";
+				return;
+			}
+
+			if (quantityA == 0 && quantityB == 0 && quantityC == 0) {
+				error = "購入数はどれか1つは1以上にする必要があります。";
+				cmd = "uniformlist";
+				return;
+			}
 
 			// 在庫数超過の確認
 			if (uniformA.getStock() < quantityA) {
@@ -95,12 +107,17 @@ public class InsertCartServlet extends HttpServlet {
 			cmd = "menu";
 			return;
 
+		} catch (NumberFormatException e) {
+			error = "購入数に不適切な値が入力されています！";
+			cmd = "uniformlist";
+			return;
+
 		} finally {
 			if (cmd.equals("")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/insertCart.jsp");
 				dispatcher.forward(request, response);
 			} else {
-				request.setAttribute("message", error);
+				request.setAttribute("error", error);
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
