@@ -10,34 +10,43 @@ ArrayList<MultiBuy> tempList = (ArrayList<MultiBuy>)request.getAttribute("tempLi
 	<head>
 		<title>カートに入れました。</title>
 	</head>
+	<header>
+	<%@ include file="/common/header.jsp"%>
+	</header>
 	<body>
 
 		<!-- 各機能へのリンク -->
-		<h2>カート追加</h2>
-		<p>
-			<h3>下記の商品をカートに追加しました。</h3>
-		</p>
+		<h2 style="text-align:center">カート追加</h2>
+
+	<hr style="text-align: center; background-color: black; width:auto; height: 2px">
+
+		<h3 style="text-align:center">下記の商品をカートに追加しました。</h3>
+
 
 		<!-- カートに入れた書籍を示すテーブル -->
-		<table>
+		<table style="margin-left:630px">
 			<tr>
-				<td>ユニフォームA</td>
-				<td><%= tempList.get(0).getQuantity() %></td>
+				<th>ユニフォームA</th>
+				<td><%=tempList.get(0).getQuantity()%></td>
 			</tr>
 			<tr>
-				<td>ユニフォームB</td>
-				<td><%= tempList.get(1).getQuantity() %></td>
+				<th>ユニフォームB</th>
+				<td><%=tempList.get(1).getQuantity()%></td>
 			</tr>
 			<tr>
-				<td>ユニフォームC</td>
-				<td><%= tempList.get(2).getQuantity() %></td>
+				<th>ユニフォームC</th>
+				<td><%=tempList.get(2).getQuantity()%></td>
 			</tr>
 		</table>
 
-		<p>
+
 			<form action="<%= request.getContextPath() %>/showCart">
-				<input type="submit" value="カート確認">
+				<input type="submit" value="カート確認" style="margin-left:800px">
 			</form>
-		</p>
+
+			<footer>
+			<%@ include file="/common/footer.jsp"%>
+			</footer>
+
 	</body>
 </html>
