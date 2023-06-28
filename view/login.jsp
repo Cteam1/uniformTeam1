@@ -1,6 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-String message =(String)request.getAttribute("message");
+String message = (String)request.getAttribute("error");
+
+//messageの値が取得できない場合は空文字を代入
+if (message == null) {
+	message = "";
+}
 %>
 
 <html>
@@ -15,7 +20,7 @@ String message =(String)request.getAttribute("message");
 			style="text-align: center; background-color: green; width: auto; height: 5px">
 	</div>
 
-	
+
 		<h2 style="text-align: center">
 			<font>管理者ログイン</font>
 		</h2>
@@ -24,9 +29,9 @@ String message =(String)request.getAttribute("message");
 			<a style="margin-top: 50px; margin-left: 50px;" href="<%=request.getContextPath()%>/logout">[ログアウト]</a>
 
 		<hr style="height: 2; background-color:green;" />
-	
 
-	<div style="margin-top:50px;">
+
+	<div style="margin-top:50px; text-align:center">
 		<form action="<%=request.getContextPath()%>/login" method="post">
 			<table style="margin: auto;">
 				<tr>
@@ -43,6 +48,8 @@ String message =(String)request.getAttribute("message");
 				</tr>
 			</table>
 		</form>
+		<br>
+		<%= message %>
 	</div>
 	<!-- ここでフッダー読み込み -->
 	<p style=" margin-bottom: 80px;"></p>
