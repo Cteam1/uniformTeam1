@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String error = "";
+		String cmd = "";
 
 		try {
 
@@ -34,25 +35,30 @@ public class LoginServlet extends HttpServlet {
 
 			//メソッドを呼び出して管理者情報を取得し、データベースに該当する管理者があるか確認
 			admin = adminDao.selectByUserid(adminid, pass);
-
 			if(admin.getAdminid() != null || admin.getPassword() != null) {
 				//該当する管理者がいた場合は、管理者情報をフォワード
 				session.setAttribute("admin", admin);
 
 			}else {
 				error = "入力データが間違っています。";
+				cmd = "login";
 			}
 
 		} catch (Exception e) {
 			error = "DB接続エラーのため、ログインできません。";
+			cmd = "menu";
 		}finally {
-
 			if (error.equals("")) {
 				//エラーが発生しなかった際は受注一覧画面に遷移
-				request.getRequestDispatcher("/orderList").forward(request, response);
+				request.getRequestDispatcher("/view/adminMenu.jsp").forward(request, response);
+			} else if (cmd.equals("menu")){
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			} else {
-				request.setAttribute("message", error);
-				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}
 	}
