@@ -104,7 +104,7 @@ public class InsertCartServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーのため選択された商品をカートに入れることができませんでした。";
-			cmd = "menu";
+			cmd = "guestMenu";
 			return;
 
 		} catch (NumberFormatException e) {
