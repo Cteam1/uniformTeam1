@@ -24,10 +24,10 @@
 	<%@include file="/common/header.jsp"%>
 
 
-<table style="margin: auto; width: 850px">
+<table style="margin: 0 auto">
 		<tr>
-			<td style="text-align: center; width: 160px">
-				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">購入者メニュー</a>
+			<td style="text-align: center">
+				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">【購入者メニューに戻る】</a>
 			</td>
 			<td style="text-align: center; width: 508px; font-size: 24px">カート内容</td>
 			<td style="width: 160px"></td>
@@ -36,14 +36,14 @@
 
 
 
-	<hr style="height: 2; background-color: #000000" />
+	<hr style="height: 2; background-color:blue">
 	<br>
 	<div style="text-align: center">
 
-		<table style="margin: 0 auto">
+		<table style="margin: 0 auto" border="1">
 			<tr>
 				<th style="background-color: #6666FF; width: 100">No.</th>
-				<th style="background-color: #6666FF; width: 100">商品名</th>
+				<th style="background-color: #6666FF; width: 350px">商品名</th>
 				<th style="background-color: #6666FF; width: 100">個数</th>
 				<th style="background-color: #6666FF; width: 100">金額</th>
 				<th style="background-color: #6666FF; width: 100">削除</th>
@@ -90,14 +90,14 @@
 	<br>
 		<div style="text-align: center">
 
-		<hr style="height: 2; background-color: #000000" />
+	<hr style="height: 2; background-color:blue">
 		<a style="font-size: 24px">購入者情報入力</a>
-		<hr style="height: 2; background-color: #000000" />
+	<hr style="height: 2; background-color:blue">
 		<br>
 
 		<form action="<%= request.getContextPath() %>/orderForm" method="post">
 
-		<table style="margin: 0 auto">
+		<table style="margin: 0 auto" border="1">
 			<tr>
 				<th style="background-color: #6666FF; width: 150">名前</th>
 				<td><input type="text" name="name"></td>
@@ -116,7 +116,7 @@
 			</tr>
 			<tr>
 				<th style="background-color: #6666FF; width: 150">備考欄<br>(200文字まで)</th>
-				<td><textarea name="message" rows="10" maxlength="200"></textarea></td>
+				<td><textarea name="message" rows="10"  cols="22" maxlength="200"></textarea></td>
 			</tr >
 		</table>
 		<br>
