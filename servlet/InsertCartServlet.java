@@ -12,14 +12,13 @@ import dao.UniformDAO;
 
 public class InsertCartServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-	throws IOException, ServletException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		// sessionオブジェクトの作成
 		HttpSession session = request.getSession();
 
 		// セッションからカート情報（multiBuy）を取得
-		ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
+		ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>) session.getAttribute("multiBuyList");
 
 		// エラーメッセージとエラーコマンドの変数を定義
 		String error = "";
@@ -35,7 +34,6 @@ public class InsertCartServlet extends HttpServlet {
 
 			ArrayList<MultiBuy> tempList = new ArrayList<MultiBuy>();
 
-			Uniform uniform = new Uniform();
 			MultiBuy multiBuy = new MultiBuy();
 			UniformDAO uniformDao = new UniformDAO();
 
@@ -100,7 +98,6 @@ public class InsertCartServlet extends HttpServlet {
 
 			request.setAttribute("tempList", tempList);
 			session.setAttribute("multiBuyList", multiBuyList);
-
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーのため選択された商品をカートに入れることができませんでした。";
