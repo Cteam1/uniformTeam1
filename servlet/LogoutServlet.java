@@ -4,22 +4,20 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-
 public class LogoutServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//セッション情報をクリアする
+		// セッション情報をクリアする
 		HttpSession session = request.getSession();
 
 		if (session != null) {
 			session.invalidate();
 		}
 
-		//login.jspにフォワードする
-		request.getRequestDispatcher("/view/login.jsp").forward(request,response);
+		// login.jspにフォワードする
+		request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 	}
 }
