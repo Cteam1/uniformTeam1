@@ -18,7 +18,7 @@
 	<table style="margin: auto; width: 850px; text-align: center;">
 		<tr>
 			<td style="width: 160px">
-				<a href="<%=request.getContextPath()%>/guestMenu">【購入者メニュー】</a>
+				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">【購入者メニュー】</a>
 			</td>
 			<td style="width: 508px; font-size: 24px">商品一覧</td>
 			<td style="width: 160px"></td>
@@ -29,6 +29,20 @@
 	<br>
 	<div style="margin: 0 auto; width: 1000">
 		<form action="<%=request.getContextPath()%>/insertCart">
+		<table border="2" style="margin: 0 auto; margin-bottom:10px">
+
+		<tr>
+		<th>ユニフォームA</th>
+		<th>ユニフォームB</th>
+		<th>ユニフォームC</th>
+		</tr>
+		<tr>
+		<td><img src="<%= request.getContextPath() %>/pic/uniformA.jpg" alt="A"></td>
+		<td><img src="<%= request.getContextPath() %>/pic/uniformB.jpg" alt="B"></td>
+		<td><img src="<%= request.getContextPath() %>/pic/uniformC.jpg" alt="C"></td>
+		</tr>
+
+		</table>
 			<table border="1">
 				<tr>
 					<th style="background-color: #dcdcdc; width: 300">種類</th>
@@ -59,7 +73,7 @@
 			</table>
 
 			<input type="submit" value="カートに追加"
-				style="margin: 50 500; width: 100">
+				style="margin: 30 460; width: 100">
 		</form>
 	</div>
 
