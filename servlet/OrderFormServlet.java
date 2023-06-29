@@ -134,7 +134,8 @@ public class OrderFormServlet extends HttpServlet {
 				order_list.add(order);
 			}
 
-			SendMail sendMail = new SendMail(order_list, total);
+			SendMail sendMail = new SendMail();
+			sendMail.send(order_list, total);
 
 			//在庫更新後のユニフォーム情報をセット
 			//request.setAttribute("uniform_list",uniform_list);
