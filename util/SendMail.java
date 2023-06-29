@@ -16,27 +16,27 @@ import javax.mail.internet.InternetAddress;
 
 public class SendMail {
 
-	public void send(ArrayList<Order> orderList , int total) {
+	public void send(ArrayList<Order> orderList, int total) {
 
-		//1行目の文章
+		// 1行目の文章
 		String start = orderList.get(0).getName() + "様\n\n";
 
-		//本文の内容
-		String contents = "Tシャツのご購入ありがとうございます。\n以下内容でご注文"
-				+ "を受け付けましたので、ご連絡致します。\n\n";
+		// 本文の内容
+		String contents = "Tシャツのご購入ありがとうございます。\n以下内容でご注文" + "を受け付けましたので、ご連絡致します。\n\n";
 
-		//購入データを配列へ格納
-		String [] order = new String[orderList.size()];
+		// 購入データを配列へ格納
+		String[] order = new String[orderList.size()];
 
-		//配列へ購入情報を格納、本文の内容へ結合
-		for(int i = 0; i < orderList.size(); i++) {
-			//配列orderへ購入情報を１行分追加していく
-			order[i] = orderList.get(i).getUniformType() + "\t" + orderList.get(i).getPrice() + "円\t" + orderList.get(i).getQuantity() +"枚\n";
-			//本文の内容へ購入情報を結合
+		// 配列へ購入情報を格納、本文の内容へ結合
+		for (int i = 0; i < orderList.size(); i++) {
+			// 配列orderへ購入情報を１行分追加していく
+			order[i] = orderList.get(i).getUniformType() + "\t" + orderList.get(i).getPrice() + "円\t"
+					+ orderList.get(i).getQuantity() + "枚\n";
+			// 本文の内容へ購入情報を結合
 			contents += order[i];
 		}
 
-		//合計金額を作成
+		// 合計金額を作成
 		String goukei = "合計" + total + "円";
 
 		try {
@@ -115,15 +115,11 @@ public class SendMail {
 
 			if (payment == null) {
 				// 本文の内容
-				contents = "発送が完了しました。\n" +
-						"到着までしばらくお待ちください。\n\n" +
-						"ご購入、ありがとうございました。";
+				contents = "発送が完了しました。\n" + "到着までしばらくお待ちください。\n\n" + "ご購入、ありがとうございました。";
 
 			} else if (send == null) {
 				// 本文の内容
-				contents = "入金を確認しました。\n"
-				+ "発送までしばらくお待ちください。\n\n" +
-				"引き続き、よろしくお願いいたします。";
+				contents = "入金を確認しました。\n" + "発送までしばらくお待ちください。\n\n" + "引き続き、よろしくお願いいたします。";
 			}
 
 			MimeMessage mimeMessage = new MimeMessage(session);
