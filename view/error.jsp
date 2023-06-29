@@ -45,7 +45,7 @@
 			} else if (cmd.equals("showCart")) {
 		%>
 		<p>
-			<a href="<%=request.getContextPath()%>/view/showCart.jsp">カート確認画面に戻る</a>
+			<a href="<%=request.getContextPath()%>/showCart">カート確認画面に戻る</a>
 		</p>
 		<%
 			} else if (cmd.equals("menu")) {
