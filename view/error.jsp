@@ -39,7 +39,7 @@
 			} else if (cmd.equals("guestMenu")) {
 		%>
 		<p>
-			<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">メニュー画面に戻る</a>
+			<a href="<%=request.getContextPath()%>/guestMenu">メニュー画面に戻る</a>
 		</p>
 		<%
 			} else if (cmd.equals("showCart")) {
