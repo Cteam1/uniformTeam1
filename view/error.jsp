@@ -39,7 +39,7 @@
 			} else if (cmd.equals("guestMenu")) {
 		%>
 		<p>
-			<a href="<%=request.getContextPath()%>/guestMenu">メニュー画面に戻る</a>
+			<a href="<%=request.getContextPath()%>/guestMenu">購入者メニュー画面に戻る</a>
 		</p>
 		<%
 			} else if (cmd.equals("showCart")) {
@@ -48,16 +48,10 @@
 			<a href="<%=request.getContextPath()%>/view/showCart.jsp">カート確認画面に戻る</a>
 		</p>
 		<%
-			} else if (cmd.equals("uniformlist")) {
-		%>
-		<p>
-			<a href="<%=request.getContextPath()%>/uniformList">ユニフォーム一覧画面に戻る</a>
-		</p>
-		<%
 			} else if (cmd.equals("menu")) {
 		%>
 		<p>
-			<a href="<%=request.getContextPath()%>/view/menu.jsp">ホーム画面に戻る</a>
+			<a href="<%=request.getContextPath()%>/view/menu.jsp">メインメニュー画面に戻る</a>
 		</p>
 		<%
 			}
