@@ -29,16 +29,11 @@ public class ShowCartServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			// セッションからカート情報（multiBuy）を取得
-			ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>)session.getAttribute("multiBuyList");
+			ArrayList<MultiBuy> multiBuyList = (ArrayList<MultiBuy>) session.getAttribute("multiBuyList");
 
 			if (multiBuyList == null) {
 				error = "セッションが切れたためカート一覧を表示することができませんでした。";
 				cmd = "menu";
-				return;
-			}
-			if (multiBuyList.isEmpty()) {
-				error = "カートの中に商品が入っていません。";
-				cmd = "uniformList";
 				return;
 			}
 
@@ -48,13 +43,17 @@ public class ShowCartServlet extends HttpServlet {
 			// ユニフォーム情報を取得
 			ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 
-
-
 			if (delno != null) {// delnoがnullでない場合
 
-				// カートから該当の書籍情報を削除
+				// カートから該当の情報を削除
 				multiBuyList.remove(Integer.parseInt(delno));
 
+			}
+
+			if (multiBuyList.isEmpty()) {
+				error = "カートの中に商品が入っていません。";
+				cmd = "uniformList";
+				return;
 			}
 
 			// カート情報とユニフォーム情報をリクエストスコープに登録
