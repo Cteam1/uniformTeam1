@@ -111,18 +111,22 @@ public class OrderFormServlet extends HttpServlet {
 				if (name == null || name.equals("")) {
 					error = "名前が入力されていません！";
 					cmd = "showCart";
+					return;
 				}
 				if (email == null || email.equals("")) {
 					error = "メールアドレスが入力されていません！";
 					cmd = "showCart";
+					return;
 				}
 				if (address == null || address.equals("")) {
 					error = "住所が入力されていません！";
 					cmd = "showCart";
+					return;
 				}
 				if (telNumber == null || telNumber.equals("")) {
 					error = "電話番号が入力されていません！";
 					cmd = "showCart";
+					return;
 				}
 
 
