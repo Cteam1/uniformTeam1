@@ -27,7 +27,7 @@
 <table style="margin: 0 auto">
 		<tr>
 			<td style="text-align: center">
-				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">【購入者メニューに戻る】</a>
+				<a href="<%=request.getContextPath()%>/guestMenu">【購入者メニューに戻る】</a>
 			</td>
 			<td style="text-align: center; width: 508px; font-size: 24px">カート内容</td>
 			<td style="width: 160px"></td>
