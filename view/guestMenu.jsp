@@ -9,9 +9,14 @@ ArrayList<MultiBuy> multiBuys = (ArrayList<MultiBuy>)session.getAttribute("multi
 if(multiBuys == null){
 	// セッション切れならerror.jspへフォワード
 	request.setAttribute("error","セッション切れの為、メニュー画面が表示できませんでした。");
-	request.setAttribute("cmd","logout");
+	request.setAttribute("cmd","menu");
 	request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 	return;
+}
+if (multiBuys.size() > 0) {
+	if (multiBuys.get(multiBuys.size() - 1).getQuantity() < 0) {
+		multiBuys.remove(multiBuys.get(multiBuys.size() - 1));
+	}
 }
 %>
 
