@@ -20,7 +20,7 @@ ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 		<table style="margin: auto; width: 850px; text-align: center;">
 		<tr>
 			<td style="width: 160px">
-				<a href="<%=request.getContextPath()%>/view/guestMenu.jsp">【購入者メニュー】</a>
+				<a href="<%=request.getContextPath()%>/guestMenu">【購入者メニュー】</a>
 			</td>
 			<td style="width: 508px; font-size: 24px">カート追加確認</td>
 			<td style="width: 160px"></td>
