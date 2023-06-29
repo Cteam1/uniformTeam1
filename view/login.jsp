@@ -26,7 +26,6 @@ if (message == null) {
 		</h2>
 		<!-- ナビゲーション  -->
 			<a style="margin-top: 50px; margin-left: 50px;" href="<%=request.getContextPath()%>/view/menu.jsp">[メニュー画面へ戻る]</a>
-			<a style="margin-top: 50px; margin-left: 50px;" href="<%=request.getContextPath()%>/logout">[ログアウト]</a>
 
 		<hr style="height: 2; background-color:green;" />
 
