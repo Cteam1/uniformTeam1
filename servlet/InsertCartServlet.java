@@ -32,6 +32,15 @@ public class InsertCartServlet extends HttpServlet {
 				return;
 			}
 
+			// リダイレクトのチェック
+			if (multiBuyList.size() > 0) {
+				if (multiBuyList.get(multiBuyList.size() - 1).getQuantity() < 0) {
+					error = "リダイレクトされています。";
+					cmd = "guestMenu";
+					return;
+				}
+			}
+
 			ArrayList<MultiBuy> tempList = new ArrayList<MultiBuy>();
 
 			MultiBuy multiBuy = new MultiBuy();
@@ -99,7 +108,14 @@ public class InsertCartServlet extends HttpServlet {
 			request.setAttribute("tempList", tempList);
 			session.setAttribute("multiBuyList", multiBuyList);
 
-		} catch (IllegalStateException e) {
+			// リダイレクトチェック用ディジットを作成
+			MultiBuy digitMultiBuy = new MultiBuy();
+			digitMultiBuy.setQuantity(-1);
+			multiBuyList.add(digitMultiBuy);
+
+		} catch (
+
+		IllegalStateException e) {
 			error = "DB接続エラーのため選択された商品をカートに入れることができませんでした。";
 			cmd = "guestMenu";
 			return;
