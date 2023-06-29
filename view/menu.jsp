@@ -2,11 +2,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
-<%
-ArrayList<MultiBuy> multiBuys = new ArrayList<MultiBuy>();
-
-session.setAttribute("multiBuyList", multiBuys);
-%>
 <html>
 <head>
 <title>メインメニュー</title>
@@ -23,7 +18,7 @@ session.setAttribute("multiBuyList", multiBuys);
 	<br>
 	<br>
 
-	<p style="text-align: center;"><a href="<%=request.getContextPath() %>/view/guestMenu.jsp">【購入者メニューへ】</a></p>
+	<p style="text-align: center;"><a href="<%=request.getContextPath() %>/guestMenu">【購入者メニューへ】</a></p>
 	<p style="text-align: center;"><a href="<%=request.getContextPath() %>/view/login.jsp">【管理者ログインへ】</a></p>
 
 
