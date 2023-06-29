@@ -37,6 +37,12 @@ public class ShowCartServlet extends HttpServlet {
 				return;
 			}
 
+			if (multiBuyList.size() > 0) {
+				if (multiBuyList.get(multiBuyList.size() - 1).getQuantity() < 0) {
+					multiBuyList.remove(multiBuyList.size() - 1);
+				}
+			}
+
 			// DAOオブジェクト宣言
 			UniformDAO uniformDao = new UniformDAO();
 
