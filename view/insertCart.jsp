@@ -40,12 +40,15 @@ ArrayList<Uniform> uniform_list = uniformDao.selectAll();
 					for(int j = 0;j < uniform_list.size();j++){ %>
 			<tr>
 				<%
+					if (tempList.get(i).getQuantity() > 0) {
+
 						if(tempList.get(i).getUniformid().equals(uniform_list.get(j).getUniformid())){
 				%>
 				<th style="background-color: #dcdcdc; width: 150"><%= uniform_list.get(j).getUniformType() %></th>
 				<td style="width: 150"><%=tempList.get(i).getQuantity()%>&nbsp;着</td>
 				<%
 
+								}
 							}
 						}
 					}
