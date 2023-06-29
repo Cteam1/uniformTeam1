@@ -17,11 +17,7 @@
 </head>
 <body>
 
-	<div style="margin-top: 30px">
-		<h1 style="text-align: center;">ユニフォーム受注管理システム</h1>
-		<hr
-			style="text-align: center; background-color: green; width: auto; height: 5px">
-	</div>
+	<%@ include file="/common/header2.jsp" %>
 
 	<h2 style="text-align: center">
 		<font>注文状況一覧</font>
