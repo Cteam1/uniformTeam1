@@ -141,7 +141,7 @@ public class SendMail {
 			mimeMessage.setSubject("支払い状況と発送状況のご確認", "iso-2022-jp");
 
 			// メールの内容を指定
-			mimeMessage.setText(start + contents);
+			mimeMessage.setText(start + contents, "iso-2022-jp");
 			// メールの形式を指定
 			mimeMessage.setHeader("Content-Type", "text/plain; charset=iso-2022-jp");
 
