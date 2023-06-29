@@ -107,7 +107,7 @@
 	</servlet-mapping>
 
 
-<!--ShowCart Servlet -->
+<!--ShowCartServlet -->
 	<servlet>
 		<servlet-name>showCartMapping</servlet-name>
 		<servlet-class>servlet.ShowCartServlet</servlet-class>
@@ -116,6 +116,17 @@
 	<servlet-mapping>
 		<servlet-name>showCartMapping</servlet-name>
 		<url-pattern>/showCart</url-pattern>
+	</servlet-mapping>
+
+<!--GuestMenuServlet -->
+	<servlet>
+		<servlet-name>guestMenuMapping</servlet-name>
+		<servlet-class>servlet.GuestMenuServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>guestMenuMapping</servlet-name>
+		<url-pattern>/guestMenu</url-pattern>
 	</servlet-mapping>
 
 </web-app>
