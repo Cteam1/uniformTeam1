@@ -61,20 +61,20 @@ public class InsertCartServlet extends HttpServlet {
 
 			if (quantityA < 0 || quantityB < 0 || quantityC < 0) {
 				error = "注文数に不適切な値が入力されています！";
-				cmd = "uniformlist";
+				cmd = "uniformList";
 				return;
 			}
 
 			if (quantityA == 0 && quantityB == 0 && quantityC == 0) {
 				error = "購入数はどれか1つは1以上にする必要があります。";
-				cmd = "uniformlist";
+				cmd = "uniformList";
 				return;
 			}
 
 			// 在庫数超過の確認
 			if (uniformA.getStock() < quantityA) {
 				error = "ユニフォームAが在庫数を超過してカートに入れています!";
-				cmd = "uniformlist";
+				cmd = "uniformList";
 				return;
 			}
 			multiBuy = new MultiBuy();
@@ -85,7 +85,7 @@ public class InsertCartServlet extends HttpServlet {
 
 			if (uniformB.getStock() < quantityB) {
 				error = "ユニフォームBが在庫数を超過してカートに入れています!";
-				cmd = "uniformlist";
+				cmd = "uniformList";
 				return;
 			}
 			multiBuy = new MultiBuy();
@@ -96,7 +96,7 @@ public class InsertCartServlet extends HttpServlet {
 
 			if (uniformC.getStock() < quantityC) {
 				error = "ユニフォームCが在庫数を超過してカートに入れています!";
-				cmd = "uniformlist";
+				cmd = "uniformList";
 				return;
 			}
 			multiBuy = new MultiBuy();
@@ -122,7 +122,7 @@ public class InsertCartServlet extends HttpServlet {
 
 		} catch (NumberFormatException e) {
 			error = "購入数に不適切な値が入力されています！";
-			cmd = "uniformlist";
+			cmd = "uniformList";
 			return;
 
 		} finally {
